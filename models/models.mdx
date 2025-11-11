@@ -10,148 +10,221 @@ order: 1
 
 # 模型总览
 
-Agicto 支持 1000+ AI 模型，包括国际主流模型和国产模型。
+Agicto 支持 1000+ AI 模型，通过统一 API 访问全球主流大语言模型。
 
 完整模型列表和实时价格请访问：[https://agicto.com/model](https://agicto.com/model)
 
-## OpenAI 模型
+## 国际主流模型
 
-| 模型 | 上下文 | 说明 |
-|------|--------|------|
-| gpt-4o | 128K | GPT-4 优化版本 |
-| gpt-4o-mini | 128K | GPT-4o 轻量版，性价比高 |
-| gpt-4-turbo | 128K | GPT-4 Turbo 版本 |
-| gpt-3.5-turbo | 16K | GPT-3.5 Turbo 版本 |
-| o1-preview | 128K | O1 推理增强模型 |
-| o1-mini | 128K | O1 轻量版本 |
-| dall-e-3 | - | 图像生成模型 |
-| whisper-1 | - | 语音识别模型 |
+### OpenAI
 
-[查看详情](/models/openai)
+OpenAI 提供业界领先的大语言模型，包括 GPT 系列和多模态模型。
 
-## Claude 模型
+**核心模型**
+- **gpt-4o** - 最新旗舰模型，128K 上下文
+- **gpt-4o-mini** - 轻量高效版本，性价比最高
+- **o1-preview** - 推理增强模型，适合复杂任务
 
-| 模型 | 上下文 | 说明 |
-|------|--------|------|
-| claude-3.5-sonnet | 200K | Claude 3.5 Sonnet 版本 |
-| claude-3-opus | 200K | Claude 3 Opus 版本 |
-| claude-3-sonnet | 200K | Claude 3 Sonnet 版本 |
-| claude-3-haiku | 200K | Claude 3 Haiku 版本 |
+**多模态能力**
+- 图像生成：DALL-E 3
+- 语音识别：Whisper
+- 文本嵌入：text-embedding-3-large
 
-[查看详情](/models/claude)
+[查看详情 →](/models/openai)
 
-## Google Gemini 模型
+### Claude (Anthropic)
 
-| 模型 | 说明 |
-|------|------|
-| gemini-2.0-flash | Gemini 2.0 Flash 版本 |
-| gemini-1.5-pro | Gemini 1.5 Pro 版本 |
-| gemini-1.5-flash | Gemini 1.5 Flash 版本 |
-| gemini-pro | Gemini Pro 版本 |
+Anthropic 的 Claude 系列以安全性和长上下文著称。
 
-[查看详情](/models/gemini)
+**核心模型**
+- **claude-3.5-sonnet** - 最新版本，200K 上下文
+- **claude-3-opus** - 最强推理能力
+- **claude-3-haiku** - 快速响应版本
 
-## DeepSeek 模型
+**特点**
+- 200K 超长上下文
+- 优秀的代码理解能力
+- 强大的分析推理能力
 
-| 模型 | 说明 |
-|------|------|
-| deepseek-v3 | DeepSeek V3 版本 |
-| deepseek-chat | DeepSeek Chat 对话模型 |
-| deepseek-coder | DeepSeek Coder 代码模型 |
+[查看详情 →](/models/claude)
 
-[查看详情](/models/deepseek)
+### Google Gemini
 
-## 通义千问（阿里云）
+Google 的多模态大语言模型，支持文本、图像、视频理解。
 
-| 模型 | 上下文 | 说明 |
-|------|--------|------|
-| qwen-max | 32K | 通义千问最强模型 |
-| qwen-plus | 128K | 通义千问增强版 |
-| qwen-turbo | 128K | 通义千问快速版 |
-| qwen-vl-max | 8K | 通义千问视觉模型 |
+**核心模型**
+- **gemini-2.0-flash** - 最新快速版本
+- **gemini-1.5-pro** - 专业版本
+- **gemini-1.5-flash** - 高效版本
 
-[查看详情](/models/qwen)
+**特点**
+- 原生多模态能力
+- 支持视频理解
+- 实时交互能力
 
-## 文心一言（百度）
+[查看详情 →](/models/gemini)
 
-| 模型 | 上下文 | 说明 |
-|------|--------|------|
-| ernie-4.0 | 8K | 文心一言 4.0 版本 |
-| ernie-bot-turbo | 8K | 文心一言 Turbo 版本 |
-| ernie-speed | 128K | 文心一言 Speed 版本 |
-| ernie-lite | 8K | 文心一言 Lite 轻量版 |
+### DeepSeek
 
-[查看详情](/models/ernie)
+DeepSeek 提供开源大语言模型，代码能力突出。
 
-## 混元（腾讯）
+**核心模型**
+- **deepseek-v3** - 最新版本
+- **deepseek-coder** - 专业代码模型
+- **deepseek-chat** - 对话模型
 
-| 模型 | 上下文 | 说明 |
-|------|--------|------|
-| hunyuan-large | 28K | 混元 Large 版本 |
-| hunyuan-turbo | 28K | 混元 Turbo 快速版 |
-| hunyuan-lite | 250K | 混元 Lite 轻量版 |
-| hunyuan-vision | 16K | 混元视觉模型 |
+**特点**
+- 开源模型
+- 强大的代码生成能力
+- 高性价比
 
-[查看详情](/models/hunyuan)
+[查看详情 →](/models/deepseek)
 
-## 豆包（字节跳动）
+## 国产主流模型
 
-| 模型 | 说明 |
-|------|------|
-| doubao-pro | 豆包专业版 |
-| doubao-lite | 豆包轻量版 |
+### 通义千问（阿里云）
 
-[查看详情](/models/doubao)
+阿里云自研大语言模型，中文能力强。
 
-## Kimi（月之暗面）
+**核心模型**
+- **qwen-max** - 最强版本，32K 上下文
+- **qwen-plus** - 增强版，128K 上下文
+- **qwen-turbo** - 快速版，128K 上下文
+- **qwen-vl-max** - 视觉模型
 
-| 模型 | 上下文 | 说明 |
-|------|--------|------|
-| moonshot-v1-128k | 128K | Kimi 128K 版本 |
-| moonshot-v1-1m | 1M | Kimi 超长上下文版本 |
+**特点**
+- 中文理解能力强
+- 多模态支持
+- 128K 长上下文
 
-[查看详情](/models/kimi)
+[查看详情 →](/models/qwen)
 
-## MiniMax
+### 文心一言（百度）
 
-| 模型 | 说明 |
-|------|------|
-| abab6.5s-chat | MiniMax 6.5S 对话模型 |
-| abab6.5-chat | MiniMax 6.5 对话模型 |
+百度自研大语言模型，深度优化中文场景。
 
-[查看详情](/models/minimax)
+**核心模型**
+- **ernie-4.0** - 最新版本
+- **ernie-speed** - 快速版，128K 上下文
+- **ernie-lite** - 轻量版
 
-## 模型选择建议
+**特点**
+- 百度生态集成
+- 中文语义理解
+- 多场景适配
+
+[查看详情 →](/models/ernie)
+
+### 混元（腾讯）
+
+腾讯自研大语言模型，支持超长上下文。
+
+**核心模型**
+- **hunyuan-large** - 大型版本，28K 上下文
+- **hunyuan-turbo** - 快速版，28K 上下文
+- **hunyuan-lite** - 轻量版，250K 上下文
+- **hunyuan-vision** - 视觉模型
+
+**特点**
+- 250K 超长上下文
+- 腾讯生态集成
+- 多模态能力
+
+[查看详情 →](/models/hunyuan)
+
+### 豆包（字节跳动）
+
+字节跳动自研大语言模型。
+
+**核心模型**
+- **doubao-pro** - 专业版
+- **doubao-lite** - 轻量版
+
+**特点**
+- 对话能力强
+- 字节生态集成
+
+[查看详情 →](/models/doubao)
+
+### Kimi（月之暗面）
+
+月之暗面的超长上下文大语言模型。
+
+**核心模型**
+- **kimi-k1.5** - 最新推理模型
+- **kimi-k2-thinking** - 思维链推理模型
+- **moonshot-v1-128k** - 128K 版本
+- **moonshot-v1-1m** - 1M 超长上下文
+
+**特点**
+- 支持 1M token 超长上下文
+- 强大的推理能力
+- 适合长文档分析
+
+[查看详情 →](/models/kimi)
+
+### MiniMax
+
+MiniMax 提供文本和语音多模态模型。
+
+**核心模型**
+- **abab7-preview** - 最新旗舰模型
+- **abab6.5s-chat** - 对话模型
+- **speech-01** - 语音合成模型
+
+**特点**
+- 中文对话能力强
+- 支持语音合成
+- 多模态能力
+
+[查看详情 →](/models/minimax)
+
+## 如何选择模型
 
 ### 按任务类型
 
 **复杂推理任务**
 - GPT-4o, Claude 3.5 Sonnet, O1-preview
+- Kimi k1.5, Kimi k2-thinking
 
 **日常对话**
-- GPT-4o-mini, DeepSeek V3, 通义千问 Turbo
+- GPT-4o-mini, DeepSeek V3
+- 通义千问 Turbo, 文心一言 Speed
 
 **代码生成**
-- DeepSeek Coder, GPT-4o, Claude 3.5 Sonnet
+- DeepSeek Coder, GPT-4o
+- Claude 3.5 Sonnet
 
 **中文任务**
-- 通义千问, 文心一言, 混元, 豆包
+- 通义千问 Max, 文心一言 4.0
+- 混元 Large, Kimi k1.5
+
+**长文档处理**
+- Kimi (1M 上下文)
+- Claude 3.5 Sonnet (200K 上下文)
+- 混元 Lite (250K 上下文)
 
 **图像理解**
-- GPT-4o, Claude 3.5 Sonnet, 通义千问 VL
+- GPT-4o, Claude 3.5 Sonnet
+- Gemini 2.0 Flash, 通义千问 VL
 
 ### 按性价比
 
 **高性价比**
-- GPT-4o-mini, DeepSeek V3, 文心一言 Lite
+- GPT-4o-mini, DeepSeek V3
+- 文心一言 Lite, 豆包 Lite
 
 **平衡性能**
-- 通义千问 Plus, 混元 Turbo, Claude 3 Haiku
+- 通义千问 Plus, 混元 Turbo
+- Claude 3 Haiku, Gemini 1.5 Flash
 
 **最强性能**
-- GPT-4o, Claude 3.5 Sonnet, 通义千问 Max
+- GPT-4o, Claude 3.5 Sonnet
+- 通义千问 Max, Kimi k1.5
 
 ## 使用示例
+
+所有模型都使用相同的 API 接口，只需修改 `model` 参数：
 
 ```python
 from openai import OpenAI
@@ -167,7 +240,28 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "Hello!"}]
 )
 
-print(response.choices[0].message.content)
+# 切换到 Claude - 只改模型名
+response = client.chat.completions.create(
+    model="claude-3.5-sonnet",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+# 切换到通义千问 - 只改模型名
+response = client.chat.completions.create(
+    model="qwen-max",
+    messages=[{"role": "user", "content": "你好！"}]
+)
 ```
 
-查看 [快速开始](/getting-started/quickstart) 了解更多用法。
+## 模型对比
+
+| 特性 | OpenAI | Claude | Gemini | 国产模型 |
+|------|--------|--------|--------|----------|
+| 上下文长度 | 128K | 200K | - | 最高 1M |
+| 中文能力 | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+| 代码能力 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| 推理能力 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| 多模态 | ✅ | ✅ | ✅ | 部分支持 |
+| 性价比 | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
+
+查看 [快速开始](/getting-started/quickstart) 了解如何使用。
