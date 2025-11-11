@@ -1,0 +1,41 @@
+---
+title: 豆包 API 模型 - 字节跳动豆包大模型完整指南
+displayTitle: 豆包
+description: 字节跳动豆包 API 支持的所有模型：Doubao Pro、Doubao Lite。字节跳动自研大模型，对话能力强，完全兼容 OpenAI SDK。
+slug: models/doubao
+published: true
+category: 模型文档
+order: 7
+---
+
+# 豆包模型
+
+字节跳动提供的豆包（Doubao）系列大语言模型。
+
+## 主要模型
+
+| 模型 | 说明 |
+|------|------|
+| doubao-pro | 豆包专业版 |
+| doubao-lite | 豆包轻量版 |
+| doubao-character | 豆包角色扮演版 |
+
+## 使用示例
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="doubao-pro",
+    messages=[{"role": "user", "content": "你好！"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+查看 [模型总览](/models/models) 了解更多模型。

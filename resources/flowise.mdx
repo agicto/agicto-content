@@ -1,0 +1,65 @@
+---
+title: Flowise 集成
+displayTitle: Flowise 集成
+description: 在 Flowise 中使用 Agicto
+slug: resources/flowise
+published: true
+category: 资源
+order: 4
+---
+
+# Flowise 集成
+
+Flowise 是一个开源的 LangChain 可视化工具，可以通过拖拽方式构建 LLM 应用。
+
+## 配置 Agicto
+
+### 1. 添加 ChatOpenAI 节点
+
+在 Flowise 画布中，添加 **ChatOpenAI** 节点
+
+### 2. 配置参数
+
+- **Model Name**: 输入模型名称（如 `gpt-4o-mini`）
+- **OpenAI API Key**: 输入你的 Agicto API Key
+- **Base URL**: 输入 `https://api.agicto.cn/v1`
+
+### 3. 连接节点
+
+将 ChatOpenAI 节点与其他节点连接，构建你的工作流
+
+## 使用示例
+
+### 简单聊天机器人
+
+1. 添加 **ChatOpenAI** 节点
+2. 添加 **Conversation Chain** 节点
+3. 连接两个节点
+4. 测试对话
+
+### RAG 应用
+
+1. 添加 **Document Loaders** 节点
+2. 添加 **Text Splitter** 节点
+3. 添加 **OpenAI Embeddings** 节点（配置 Agicto）
+4. 添加 **Vector Store** 节点
+5. 添加 **Retrieval QA Chain** 节点
+6. 添加 **ChatOpenAI** 节点
+7. 连接所有节点
+
+### Agent 应用
+
+1. 添加 **ChatOpenAI** 节点
+2. 添加 **Tools** 节点
+3. 添加 **Agent** 节点
+4. 连接节点并配置工具
+
+## 支持的功能
+
+- 聊天对话
+- 文档问答
+- Agent 工具调用
+- 向量检索
+- 记忆管理
+
+查看 [LangChain 集成](/resources/langchain) 了解更多。

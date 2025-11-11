@@ -1,0 +1,292 @@
+{
+  "$schema": "https://agicto.com/navigation.json",
+  "name": "Agicto 文档",
+  "description": "Agicto 平台完整文档",
+  "tabs": [
+    {
+      "tab": "文档",
+      "groups": [
+        {
+          "group": "快速开始",
+          "pages": [
+            {
+              "title": "介绍",
+              "slug": "getting-started/introduction",
+              "published": true,
+              "order": 0
+            },
+            {
+              "title": "快速开始",
+              "slug": "getting-started/quickstart",
+              "published": true,
+              "order": 1
+            },
+            {
+              "title": "认证",
+              "slug": "getting-started/authentication",
+              "published": true,
+              "order": 2
+            }
+          ]
+        },
+        {
+          "group": "使用指南",
+          "pages": [
+            {
+              "title": "API 密钥",
+              "slug": "guides/api-keys",
+              "published": true,
+              "order": 1
+            },
+            {
+              "title": "速率限制",
+              "slug": "guides/rate-limiting",
+              "published": true,
+              "order": 2
+            },
+            {
+              "title": "分页",
+              "slug": "guides/pagination",
+              "published": true,
+              "order": 3
+            },
+            {
+              "title": "错误处理",
+              "slug": "guides/errors",
+              "published": true,
+              "order": 4
+            },
+            {
+              "title": "Webhooks",
+              "slug": "guides/webhooks",
+              "published": true,
+              "order": 5
+            }
+          ]
+        },
+        {
+          "group": "模型",
+          "pages": [
+            {
+              "title": "模型总览",
+              "slug": "models/models",
+              "published": true,
+              "order": 0
+            },
+            {
+              "title": "OpenAI",
+              "slug": "models/openai",
+              "published": true,
+              "order": 1
+            },
+            {
+              "title": "Claude",
+              "slug": "models/claude",
+              "published": true,
+              "order": 2
+            },
+            {
+              "title": "Google Gemini",
+              "slug": "models/gemini",
+              "published": true,
+              "order": 3
+            },
+            {
+              "title": "Mistral",
+              "slug": "models/mistral",
+              "published": true,
+              "order": 4
+            },
+            {
+              "title": "DeepSeek",
+              "slug": "models/deepseek",
+              "published": true,
+              "order": 5
+            }
+          ]
+        },
+        {
+          "group": "功能",
+          "pages": [
+            {
+              "title": "文本生成",
+              "slug": "features/text-generation",
+              "published": true,
+              "order": 1
+            },
+            {
+              "title": "视觉模型",
+              "slug": "features/vision",
+              "published": true,
+              "order": 2
+            },
+            {
+              "title": "嵌入模型",
+              "slug": "features/embeddings",
+              "published": true,
+              "order": 3
+            },
+            {
+              "title": "图像生成",
+              "slug": "features/image-generation",
+              "published": true,
+              "order": 4
+            },
+            {
+              "title": "函数调用",
+              "slug": "features/function-calling",
+              "published": true,
+              "order": 5
+            }
+          ]
+        },
+        {
+          "group": "资源",
+          "pages": [
+            {
+              "title": "SDK",
+              "slug": "resources/sdks",
+              "published": true,
+              "order": 1
+            },
+            {
+              "title": "LangChain 集成",
+              "slug": "resources/langchain",
+              "published": true,
+              "order": 2
+            },
+            {
+              "title": "LlamaIndex 集成",
+              "slug": "resources/llamaindex",
+              "published": true,
+              "order": 3
+            },
+            {
+              "title": "更新日志",
+              "slug": "resources/changelog",
+              "published": true,
+              "order": 4
+            },
+            {
+              "title": "支持",
+              "slug": "resources/support",
+              "published": true,
+              "order": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tab": "API 参考",
+      "groups": [
+        {
+          "group": "概览",
+          "pages": [
+            {
+              "title": "API 参考",
+              "slug": "api/introduction",
+              "published": true,
+              "order": 0
+            }
+          ]
+        },
+        {
+          "group": "项目",
+          "pages": [
+            {
+              "title": "列出项目",
+              "slug": "api/projects/list",
+              "method": "GET",
+              "published": true,
+              "order": 1
+            },
+            {
+              "title": "创建项目",
+              "slug": "api/projects/create",
+              "method": "POST",
+              "published": true,
+              "order": 2
+            },
+            {
+              "title": "获取项目",
+              "slug": "api/projects/get",
+              "method": "GET",
+              "published": true,
+              "order": 3
+            },
+            {
+              "title": "更新项目",
+              "slug": "api/projects/update",
+              "method": "PUT",
+              "published": true,
+              "order": 4
+            },
+            {
+              "title": "删除项目",
+              "slug": "api/projects/delete",
+              "method": "DELETE",
+              "published": true,
+              "order": 5
+            }
+          ]
+        },
+        {
+          "group": "部署",
+          "pages": [
+            {
+              "title": "列出部署",
+              "slug": "api/deployments/list",
+              "method": "GET",
+              "published": true,
+              "order": 1
+            },
+            {
+              "title": "创建部署",
+              "slug": "api/deployments/create",
+              "method": "POST",
+              "published": true,
+              "order": 2
+            },
+            {
+              "title": "获取部署",
+              "slug": "api/deployments/get",
+              "method": "GET",
+              "published": true,
+              "order": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:support@agicto.com"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/agicto"
+      }
+    ]
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/agicto",
+      "twitter": "https://twitter.com/agicto",
+      "linkedin": "https://linkedin.com/company/agicto"
+    },
+    "links": [
+      {
+        "label": "Privacy Policy",
+        "href": "/privacy"
+      },
+      {
+        "label": "Terms of Service",
+        "href": "/terms"
+      }
+    ]
+  }
+}

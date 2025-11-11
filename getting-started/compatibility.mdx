@@ -1,0 +1,87 @@
+---
+title: OpenAI 兼容性
+displayTitle: OpenAI 兼容性
+description: Agicto 完全兼容 OpenAI SDK
+slug: getting-started/compatibility
+published: true
+category: 入门指南
+order: 3
+---
+
+# OpenAI 兼容性
+
+Agicto 完全兼容 OpenAI SDK，只需修改两个参数即可使用。
+
+## 使用方法
+
+### Python
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",        # 使用 Agicto API Key
+    base_url="https://api.agicto.cn/v1"  # 使用 Agicto Base URL
+)
+
+# 其余代码完全相同
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+### Node.js
+
+```javascript
+import OpenAI from 'openai';
+
+const client = new OpenAI({
+  apiKey: 'your-api-key',
+  baseURL: 'https://api.agicto.cn/v1',
+});
+
+const response = await client.chat.completions.create({
+  model: 'gpt-4o-mini',
+  messages: [{ role: 'user', content: 'Hello!' }],
+});
+
+console.log(response.choices[0].message.content);
+```
+
+## 支持的功能
+
+- ✅ Chat Completions（聊天补全）
+- ✅ Embeddings（文本嵌入）
+- ✅ Function Calling（函数调用）
+- ✅ Vision（图像理解）
+- ✅ Image Generation（图像生成）
+- ✅ Streaming（流式输出）
+
+## 切换不同模型
+
+只需修改 `model` 参数即可切换模型：
+
+```python
+# 使用 Claude
+response = client.chat.completions.create(
+    model="claude-3.5-sonnet",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+# 使用 DeepSeek
+response = client.chat.completions.create(
+    model="deepseek-v3",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+# 使用通义千问
+response = client.chat.completions.create(
+    model="qwen-max",
+    messages=[{"role": "user", "content": "你好！"}]
+)
+```
+
+查看 [模型总览](/models/models) 了解所有可用模型。

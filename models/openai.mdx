@@ -1,0 +1,107 @@
+---
+title: OpenAI API 模型 - GPT-4o、GPT-4、O1 推理模型完整指南
+displayTitle: OpenAI 模型
+description: OpenAI API 支持的所有模型：GPT-4o、GPT-4o-mini、GPT-4 Turbo、O1 推理模型、DALL-E 图像生成、Whisper 语音识别。完全兼容 OpenAI SDK，一个 API 访问所有 OpenAI 模型。
+slug: models/openai
+published: true
+category: 模型文档
+order: 2
+---
+
+# OpenAI 模型
+
+OpenAI 提供的大语言模型，包括 GPT-5、GPT-4.1、O3/O4 推理模型等。
+
+## 前沿模型
+
+| 模型 | 说明 |
+|------|------|
+| gpt-5 | 最强大的模型，适合编码和智能体任务 |
+| gpt-5-mini | GPT-5 快速版本，性价比高 |
+| gpt-5-nano | GPT-5 最快、最经济版本 |
+| gpt-5-pro | GPT-5 专业版，更智能精确 |
+| gpt-4.1 | 最智能的非推理模型 |
+| gpt-4.1-mini | GPT-4.1 小型版本 |
+| gpt-4.1-nano | GPT-4.1 最快版本 |
+
+## 推理模型
+
+| 模型 | 说明 |
+|------|------|
+| o3 | 复杂任务推理模型 |
+| o4-mini | 快速、经济的推理模型 |
+| o3-pro | O3 增强计算版本 |
+| o3-mini | O3 小型版本 |
+| o1 | 上一代推理模型 |
+| o1-mini | O1 小型版本 |
+
+## 经典模型
+
+| 模型 | 上下文 | 说明 |
+|------|--------|------|
+| gpt-4o | 128K | 快速、智能、灵活的 GPT 模型 |
+| gpt-4o-mini | 128K | 快速、经济的小型模型 |
+| gpt-4-turbo | 128K | 高智能 GPT 模型 |
+| gpt-3.5-turbo | 16K | 传统 GPT 模型 |
+
+## 图像生成
+
+| 模型 | 说明 |
+|------|------|
+| gpt-image-1 | 最先进的图像生成模型 |
+| gpt-image-1-mini | GPT Image 1 经济版 |
+| dall-e-3 | 上一代图像生成模型 |
+| dall-e-2 | 第一代图像生成模型 |
+
+## 视频生成
+
+| 模型 | 说明 |
+|------|------|
+| sora-2 | 旗舰视频生成，支持同步音频 |
+| sora-2-pro | 最先进的同步音频视频生成 |
+
+## 音频模型
+
+| 模型 | 说明 |
+|------|------|
+| gpt-realtime | 实时文本和音频输入输出 |
+| gpt-audio | 音频输入输出 |
+| gpt-4o-transcribe | GPT-4o 语音转文本 |
+| whisper | 通用语音识别模型 |
+| tts-1 | 语音合成（速度优化） |
+| tts-1-hd | 语音合成（质量优化） |
+
+## 嵌入模型
+
+| 模型 | 说明 |
+|------|------|
+| text-embedding-3-large | 最强嵌入模型 |
+| text-embedding-3-small | 小型嵌入模型 |
+| text-embedding-ada-002 | 传统嵌入模型 |
+
+## 开源模型
+
+| 模型 | 说明 |
+|------|------|
+| gpt-oss-120b | 最强开源模型，Apache 2.0 许可 |
+| gpt-oss-20b | 中型开源模型，低延迟 |
+
+## 使用示例
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+查看 [模型总览](/models/models) 了解更多模型。

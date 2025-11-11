@@ -1,0 +1,97 @@
+---
+title: Agicto API 文档 - 统一 AI 模型接入平台 | 1000+ 大语言模型 API
+displayTitle: 首页
+description: Agicto 统一 AI 模型接入平台，支持 1000+ 大语言模型 API：OpenAI GPT-4o、Claude 3.5、Gemini 2.0、DeepSeek、通义千问、文心一言、Kimi。完全兼容 OpenAI SDK，一个 API 访问所有模型。
+slug: index
+published: true
+order: 0
+---
+
+# Agicto 文档
+
+Agicto 是统一的 AI 模型接入平台，让你通过一个 API 访问全球 1000+ 大语言模型。
+
+## 核心特性
+
+### 完全兼容 OpenAI SDK
+
+无需学习新的 SDK，直接使用 OpenAI 官方 SDK，只需修改两个参数：
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",        # 使用 Agicto API Key
+    base_url="https://api.agicto.cn/v1"  # 使用 Agicto Base URL
+)
+```
+
+### 只改模型名，即可切换任意模型
+
+使用相同的代码，只需修改 `model` 参数，即可在 1000+ 模型间自由切换：
+
+```python
+# 使用 GPT-4o-mini
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+# 切换到 Claude - 只改模型名
+response = client.chat.completions.create(
+    model="claude-3.5-sonnet",  # 只改这里
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+# 切换到通义千问 - 只改模型名
+response = client.chat.completions.create(
+    model="qwen-max",  # 只改这里
+    messages=[{"role": "user", "content": "你好！"}]
+)
+```
+
+### 支持 1000+ 模型
+
+- **国际模型**: OpenAI、Claude、Gemini、DeepSeek
+- **国产模型**: 通义千问、文心一言、混元、豆包
+- **开源模型**: Llama、Mistral 等
+
+### 统一计费
+
+一个账户，统一计费，无需管理多个平台的 API Key 和账单。
+
+## 快速开始
+
+### 安装
+
+```bash
+pip install openai
+```
+
+### 使用
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+## 文档
+
+- [快速开始](/getting-started/quickstart) - 5 分钟快速接入
+- [模型总览](/models/models) - 查看所有支持的模型
+- [OpenAI 兼容性](/guides/openai-compatibility) - 兼容性说明
+
+## 技术支持
+
+添加微信：**starkwang_**

@@ -1,0 +1,52 @@
+---
+title: 通义千问 API 模型 - Qwen Max、Qwen Plus、Qwen Turbo 完整指南
+displayTitle: 通义千问
+description: 阿里云通义千问 API 支持的所有模型：Qwen Max、Qwen Plus、Qwen Turbo、Qwen VL 视觉模型。中文能力强，128K 上下文，完全兼容 OpenAI SDK。
+slug: models/qwen
+published: true
+category: 模型文档
+order: 6
+---
+
+# 通义千问模型
+
+阿里云提供的通义千问（Qwen）系列大语言模型。
+
+## 主要模型
+
+| 模型 | 上下文 | 说明 |
+|------|--------|------|
+| qwen-max | 32K | 通义千问最强模型 |
+| qwen-plus | 128K | 通义千问增强版 |
+| qwen-turbo | 128K | 通义千问快速版 |
+| qwen3-max | - | Qwen 3 最强版本 |
+| qwen3-235b | - | Qwen 3 235B 参数版本 |
+| qwen3-32b | - | Qwen 3 32B 参数版本 |
+| qwq-plus | 128K | 通义千问推理增强版 |
+
+## 视觉模型
+
+| 模型 | 上下文 | 说明 |
+|------|--------|------|
+| qwen-vl-max | 8K | 通义千问视觉最强版 |
+| qwen-vl-plus | 8K | 通义千问视觉增强版 |
+
+## 使用示例
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="qwen-max",
+    messages=[{"role": "user", "content": "你好！"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+查看 [模型总览](/models/models) 了解更多模型。

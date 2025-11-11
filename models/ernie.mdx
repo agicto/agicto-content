@@ -1,0 +1,44 @@
+---
+title: 文心一言 API 模型 - ERNIE 4.0、文心大模型完整指南
+displayTitle: 文心一言
+description: 百度文心一言 API 支持的所有模型：ERNIE 4.0、ERNIE Bot Turbo、ERNIE Speed、ERNIE Lite。百度自研大模型，中文理解能力强，完全兼容 OpenAI SDK。
+slug: models/ernie
+published: true
+category: 模型文档
+order: 8
+---
+
+# 文心一言模型
+
+百度提供的文心一言（ERNIE）系列大语言模型。
+
+## 主要模型
+
+| 模型 | 上下文 | 说明 |
+|------|--------|------|
+| ernie-4.0 | 8K | 文心一言 4.0 版本 |
+| ernie-4.5-vl | 30K | 文心一言 4.5 视觉版本 |
+| ernie-bot-turbo | 8K | 文心一言 Turbo 快速版 |
+| ernie-speed | 128K | 文心一言 Speed 版本 |
+| ernie-lite | 8K | 文心一言 Lite 轻量版 |
+| ernie-tiny | 8K | 文心一言 Tiny 极速版 |
+
+## 使用示例
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="ernie-4.0",
+    messages=[{"role": "user", "content": "你好！"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+查看 [模型总览](/models/models) 了解更多模型。

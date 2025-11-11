@@ -1,0 +1,42 @@
+---
+title: DeepSeek API 模型 - DeepSeek V3、DeepSeek Coder 完整指南
+displayTitle: DeepSeek 模型
+description: DeepSeek API 支持的所有模型：DeepSeek V3、DeepSeek Chat、DeepSeek Coder。开源大模型，强大的代码生成能力，完全兼容 OpenAI SDK。
+slug: models/deepseek
+published: true
+category: 模型文档
+order: 5
+---
+
+# DeepSeek 模型
+
+DeepSeek 提供的开源大语言模型。
+
+## 主要模型
+
+| 模型 | 说明 |
+|------|------|
+| deepseek-v3.2 | DeepSeek V3.2 最新版本 |
+| deepseek-v3.1 | DeepSeek V3.1 版本 |
+| deepseek-v3 | DeepSeek V3 版本 |
+| deepseek-chat | DeepSeek Chat 对话模型 |
+
+## 使用示例
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="deepseek-v3",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+查看 [模型总览](/models/models) 了解更多模型。

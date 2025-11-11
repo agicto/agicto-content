@@ -1,0 +1,70 @@
+---
+title: MiniMax API 模型 - ABAB 6.5、语音合成模型完整指南
+displayTitle: MiniMax
+description: MiniMax API 支持的所有模型：ABAB 6.5S Chat、ABAB 6.5 Chat、Speech-01 语音合成。中文对话能力强，支持语音合成，完全兼容 OpenAI SDK。
+slug: models/minimax
+published: true
+category: 模型文档
+order: 11
+---
+
+# MiniMax 模型
+
+MiniMax 提供的大语言模型，支持文本生成和语音合成。
+
+## 主要模型
+
+| 模型 | 说明 |
+|------|------|
+| abab6.5s-chat | MiniMax 6.5S 对话模型 |
+| abab6.5-chat | MiniMax 6.5 对话模型 |
+| abab5.5-chat | MiniMax 5.5 对话模型 |
+
+## 语音模型
+
+| 模型 | 说明 |
+|------|------|
+| speech-01 | MiniMax 语音合成模型 |
+| speech-01-turbo | MiniMax 语音合成快速版 |
+
+## 使用示例
+
+### 文本生成
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="abab6.5s-chat",
+    messages=[{"role": "user", "content": "你好！"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+### 语音合成
+
+```python
+response = client.audio.speech.create(
+    model="speech-01",
+    voice="female-tianmei",
+    input="你好，欢迎使用 MiniMax"
+)
+
+# 保存音频文件
+with open("output.mp3", "wb") as f:
+    f.write(response.content)
+```
+
+## 特点
+
+- 中文对话能力强
+- 支持语音合成
+- 多种音色选择
+
+查看 [模型总览](/models/models) 了解更多模型。

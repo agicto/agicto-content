@@ -1,0 +1,86 @@
+---
+title: Dify 集成
+displayTitle: Dify 集成
+description: 在 Dify 中使用 Agicto
+slug: resources/dify
+published: true
+category: 资源
+order: 3
+---
+
+# Dify 集成
+
+Dify 是一个开源的 LLM 应用开发平台，支持快速构建 AI 应用。
+
+## 配置 Agicto
+
+### 1. 进入模型设置
+
+登录 Dify 后，进入 **设置 → 模型供应商**
+
+### 2. 添加自定义模型
+
+选择 **OpenAI**，配置如下：
+
+- **API Key**: 你的 Agicto API Key
+- **API Base URL**: `https://api.agicto.cn/v1`
+- **模型名称**: 选择你要使用的模型（如 `gpt-4o-mini`）
+
+### 3. 测试连接
+
+点击"测试"按钮，确认连接成功。
+
+## 使用场景
+
+### 聊天助手
+
+1. 创建新应用，选择"聊天助手"
+2. 选择已配置的 Agicto 模型
+3. 设置系统提示词
+4. 发布应用
+
+### 工作流
+
+1. 创建工作流应用
+2. 添加 LLM 节点
+3. 选择 Agicto 模型
+4. 配置输入输出
+5. 测试并发布
+
+### 知识库
+
+1. 创建知识库
+2. 上传文档
+3. 选择 Agicto 的嵌入模型
+4. 在应用中关联知识库
+
+## 支持的模型
+
+Dify 中可以使用所有 Agicto 支持的模型：
+
+- GPT-4o, GPT-4o-mini
+- Claude 3.5 Sonnet
+- Gemini 2.0 Flash
+- DeepSeek V3
+- 通义千问
+- 文心一言
+- 混元
+
+## 最佳实践
+
+### 使用不同模型
+
+根据任务选择合适的模型：
+
+- **复杂推理**: GPT-4o, Claude 3.5 Sonnet
+- **快速响应**: GPT-4o-mini, DeepSeek V3
+- **中文任务**: 通义千问, 文心一言, 混元
+- **性价比**: GPT-4o-mini, DeepSeek V3
+
+### 优化成本
+
+- 使用缓存减少重复请求
+- 选择合适的模型规格
+- 设置合理的 token 限制
+
+查看 [模型总览](/models/models) 了解所有可用模型。

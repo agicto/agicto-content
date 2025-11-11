@@ -1,0 +1,169 @@
+---
+title: 文本生成
+displayTitle: 文本生成
+description: 使用 Agicto 进行文本生成和聊天补全
+slug: features/text-generation
+published: true
+category: 功能文档
+order: 1
+---
+
+# 文本生成
+
+文本生成（Chat Completions）是最常用的 AI 功能，用于生成文本、对话、内容创作等。
+
+## 基本用法
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "system", "content": "你是一个专业的助手"},
+        {"role": "user", "content": "介绍一下人工智能"}
+    ]
+)
+
+print(response.choices[0].message.content)
+```
+
+## 流式输出
+
+实时获取生成的内容，提升用户体验：
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "写一首诗"}],
+    stream=True
+)
+
+for chunk in response:
+    if chunk.choices[0].delta.content:
+        print(chunk.choices[0].delta.content, end="", flush=True)
+```
+
+## 系统提示词
+
+使用系统提示词定义模型的行为和角色：
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "system", "content": "你是一个专业的 Python 开发者，擅长代码优化"},
+        {"role": "user", "content": "如何提升 Python 代码性能？"}
+    ]
+)
+```
+
+## 多轮对话
+
+维护对话历史实现上下文对话：
+
+```python
+messages = [
+    {"role": "system", "content": "你是一个友好的助手"}
+]
+
+# 第一轮对话
+messages.append({"role": "user", "content": "我叫小明"})
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=messages
+)
+messages.append({"role": "assistant", "content": response.choices[0].message.content})
+
+# 第二轮对话
+messages.append({"role": "user", "content": "我叫什么名字？"})
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=messages
+)
+print(response.choices[0].message.content)  # 输出：你叫小明
+```
+
+## 参数说明
+
+### temperature
+
+控制输出的随机性（0-2）：
+- `0`: 确定性输出，适合事实性任务
+- `1`: 平衡创造性和一致性（默认）
+- `2`: 高度随机，适合创意写作
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "写一个故事"}],
+    temperature=1.5  # 更有创意
+)
+```
+
+### max_tokens
+
+限制输出的最大 token 数：
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "介绍人工智能"}],
+    max_tokens=100  # 限制输出长度
+)
+```
+
+### top_p
+
+核采样参数（0-1），控制输出的多样性：
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "写一首诗"}],
+    top_p=0.9
+)
+```
+
+## 支持的模型
+
+所有 Agicto 支持的模型都可以用于文本生成：
+
+- **GPT 系列**: gpt-4o, gpt-4o-mini, gpt-4-turbo
+- **Claude 系列**: claude-3.5-sonnet, claude-3-opus
+- **Gemini 系列**: gemini-2.0-flash, gemini-1.5-pro
+- **DeepSeek**: deepseek-v3, deepseek-chat
+- **国产模型**: qwen-max, ernie-4.0, hunyuan-large
+
+查看 [模型总览](/models/models) 了解所有可用模型。
+
+## 最佳实践
+
+1. **使用系统提示词** - 明确定义模型的角色和行为
+2. **流式输出** - 提升用户体验，实时显示生成内容
+3. **控制 token 数** - 避免不必要的成本
+4. **选择合适的模型** - 根据任务复杂度选择模型
+5. **错误处理** - 添加重试机制和错误处理
+
+```python
+from openai import OpenAI, OpenAIError
+import time
+
+def generate_with_retry(messages, max_retries=3):
+    for i in range(max_retries):
+        try:
+            response = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=messages
+            )
+            return response.choices[0].message.content
+        except OpenAIError as e:
+            if i == max_retries - 1:
+                raise
+            time.sleep(2 ** i)  # 指数退避
+```

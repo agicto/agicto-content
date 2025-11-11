@@ -1,0 +1,49 @@
+---
+title: 腾讯混元 API 模型 - Hunyuan Large、混元大模型完整指南
+displayTitle: 混元
+description: 腾讯混元 API 支持的所有模型：Hunyuan Large、Hunyuan Turbo、Hunyuan Lite、Hunyuan Vision。250K 超长上下文，腾讯自研大模型，完全兼容 OpenAI SDK。
+slug: models/hunyuan
+published: true
+category: 模型文档
+order: 9
+---
+
+# 混元模型
+
+腾讯提供的混元（Hunyuan）系列大语言模型。
+
+## 主要模型
+
+| 模型 | 上下文 | 说明 |
+|------|--------|------|
+| hunyuan-large | 28K | 混元 Large 版本 |
+| hunyuan-turbo | 28K | 混元 Turbo 快速版 |
+| hunyuan-lite | 250K | 混元 Lite 轻量版 |
+| hunyuan-standard | 30K | 混元 Standard 标准版 |
+| hunyuan-standard-256k | 250K | 混元 Standard 长文本版 |
+
+## 视觉模型
+
+| 模型 | 上下文 | 说明 |
+|------|--------|------|
+| hunyuan-vision | 16K | 混元视觉模型 |
+
+## 使用示例
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="hunyuan-large",
+    messages=[{"role": "user", "content": "你好！"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+查看 [模型总览](/models/models) 了解更多模型。

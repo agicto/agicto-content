@@ -1,0 +1,146 @@
+---
+title: Agicto 介绍 - 统一 AI 模型 API 平台 | 兼容 OpenAI SDK
+displayTitle: 介绍
+description: Agicto 是统一的 AI 模型接入平台，支持 1000+ 大语言模型 API。完全兼容 OpenAI SDK，只改模型名即可切换任意模型，一个 API Key 访问所有模型。
+slug: getting-started/introduction
+published: true
+category: 入门指南
+order: 1
+---
+
+# Agicto 介绍
+
+Agicto 是统一的 AI 模型接入平台，让你通过一个 API 访问全球 1000+ 大语言模型。
+
+## 为什么选择 Agicto？
+
+### 完全兼容 OpenAI SDK
+
+无需学习新的 SDK 或 API，直接使用你熟悉的 OpenAI SDK：
+
+```python
+from openai import OpenAI
+
+# 只需修改这两个参数
+client = OpenAI(
+    api_key="your-api-key",        # 使用 Agicto API Key
+    base_url="https://api.agicto.cn/v1"  # 使用 Agicto Base URL
+)
+
+# 其余代码完全相同
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+```
+
+### 只改模型名，轻松切换
+
+使用相同的代码，只需修改 `model` 参数，即可切换到任意模型：
+
+```python
+# 使用 GPT-4o-mini
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+# 切换到 Claude - 只改模型名
+response = client.chat.completions.create(
+    model="claude-3.5-sonnet",  # 只改这里
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+# 切换到通义千问 - 只改模型名
+response = client.chat.completions.create(
+    model="qwen-max",  # 只改这里
+    messages=[{"role": "user", "content": "你好！"}]
+)
+
+# 切换到 DeepSeek - 只改模型名
+response = client.chat.completions.create(
+    model="deepseek-v3",  # 只改这里
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+```
+
+### 一个 API，访问所有模型
+
+通过 Agicto，你可以访问：
+
+- **国际主流模型**: GPT-4o, Claude 3.5, Gemini 2.0, DeepSeek V3
+- **国产模型**: 通义千问, 文心一言, 混元, 豆包
+- **开源模型**: Llama, Mistral 等
+
+无需注册多个平台账号，无需管理多个 API Key。
+
+### 统一计费
+
+- 按使用量计费
+- 详细用量统计
+- 余额提醒
+
+### 企业级服务
+
+- 速率限制
+- Webhook 通知
+- 技术支持
+
+## 支持的模型
+
+目前支持 1000+ 模型，包括：
+
+**主流模型**
+- OpenAI: GPT-4o, GPT-4o-mini, GPT-4 Turbo, GPT-3.5-Turbo
+- Anthropic: Claude 3.5 Sonnet, Claude 3 Opus
+- Google: Gemini 2.0 Flash, Gemini 1.5 Pro
+- DeepSeek: DeepSeek V3, DeepSeek Coder
+
+**开源模型**
+- Meta: Llama 3.1, Llama 3, Llama 2
+- Mistral: Mistral Large, Mistral 7B
+- 其他开源模型
+
+**国产模型**
+- 文心一言、通义千问、月之暗面、智谱 AI 等
+
+查看 [完整模型列表](/models/models)。
+
+## 使用场景
+
+**内容生成**
+- 文本创作、摘要、翻译
+
+**代码辅助**
+- 代码生成、补全、分析
+
+**数据处理**
+- 文本分析、信息提取
+
+**对话系统**
+- 客服机器人、智能助手
+
+## 架构说明
+
+```
+应用程序
+    ↓
+Agicto API (统一接口)
+    ↓
+├─ OpenAI
+├─ Claude
+├─ Gemini
+├─ DeepSeek
+└─ 其他模型
+```
+
+## 开始使用
+
+1. [注册账户](https://agicto.com/login) 获取 API Key
+2. [快速开始](/getting-started/quickstart) 发起第一个请求
+3. [查看模型](/models/models) 选择合适的模型
+4. [阅读指南](/guides/openai-compatibility) 了解最佳实践
+
+## 技术支持
+
+添加微信：**starkwang_**

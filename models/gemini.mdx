@@ -1,0 +1,55 @@
+---
+title: Google Gemini API 模型 - Gemini 2.0 Flash、Gemini 1.5 Pro 完整指南
+displayTitle: Gemini 模型
+description: Google Gemini API 支持的所有模型：Gemini 2.0 Flash、Gemini 1.5 Pro、Gemini Pro。多模态能力，支持文本、图像、视频理解，完全兼容 OpenAI SDK。
+slug: models/gemini
+published: true
+category: 模型文档
+order: 4
+---
+
+# Gemini 模型
+
+Google 提供的 Gemini 系列大语言模型。
+
+## 主要模型
+
+| 模型 | 说明 |
+|------|------|
+| gemini-2.5-flash | Gemini 2.5 Flash 版本 |
+| gemini-2.0-flash | Gemini 2.0 Flash 版本 |
+| gemini-1.5-pro | Gemini 1.5 Pro 版本 |
+| gemini-1.5-flash | Gemini 1.5 Flash 版本 |
+| gemini-pro | Gemini Pro 版本 |
+
+## 图像生成
+
+| 模型 | 说明 |
+|------|------|
+| gemini-2.5-flash-image | Gemini 2.5 图像生成 |
+
+## 音频模型
+
+| 模型 | 说明 |
+|------|------|
+| gemini-2.5-flash-native-audio | Gemini 2.5 原生音频模型 |
+
+## 使用示例
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="gemini-2.0-flash",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+查看 [模型总览](/models/models) 了解更多模型。

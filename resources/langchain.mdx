@@ -1,0 +1,92 @@
+---
+title: LangChain 集成
+displayTitle: LangChain 集成
+description: 在 LangChain 中使用 Agicto
+slug: resources/langchain
+published: true
+category: 资源
+order: 2
+---
+
+# LangChain 集成
+
+LangChain 是一个强大的 LLM 应用开发框架，Agicto 完全兼容 LangChain。
+
+## 安装
+
+```bash
+pip install langchain langchain-openai
+```
+
+## 基本使用
+
+```python
+from langchain_openai import ChatOpenAI
+
+llm = ChatOpenAI(
+    model="gpt-4o-mini",
+    openai_api_key="your-api-key",
+    openai_api_base="https://api.agicto.cn/v1"
+)
+
+response = llm.invoke("你好")
+print(response.content)
+```
+
+## 构建 RAG 应用
+
+```python
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_openai import OpenAIEmbeddings
+from langchain.vectorstores import FAISS
+from langchain.chains import RetrievalQA
+
+# 分割文档
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=200
+)
+texts = text_splitter.create_documents(["文档内容"])
+
+# 创建向量存储
+embeddings = OpenAIEmbeddings(
+    openai_api_key="your-api-key",
+    openai_api_base="https://api.agicto.cn/v1"
+)
+vectorstore = FAISS.from_documents(texts, embeddings)
+
+# 创建检索链
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    retriever=vectorstore.as_retriever()
+)
+
+result = qa_chain("查询问题")
+print(result["result"])
+```
+
+## 使用 Agent
+
+```python
+from langchain.agents import initialize_agent, AgentType
+from langchain.tools import Tool
+
+tools = [
+    Tool(
+        name="Search",
+        func=lambda x: f"搜索: {x}",
+        description="搜索工具"
+    )
+]
+
+agent = initialize_agent(
+    tools,
+    llm,
+    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION
+)
+
+result = agent.run("搜索 Python")
+print(result)
+```
+
+查看 [快速开始](/getting-started/quickstart) 了解更多。

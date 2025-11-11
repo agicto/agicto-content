@@ -1,0 +1,55 @@
+---
+title: Kimi API 模型 - Moonshot AI 超长上下文大模型完整指南
+displayTitle: Kimi
+description: 月之暗面 Kimi API 支持的所有模型：Moonshot V1 128K、Moonshot V1 1M。支持最长 1M token 超长上下文，适合长文档分析，完全兼容 OpenAI SDK。
+slug: models/kimi
+published: true
+category: 模型文档
+order: 10
+---
+
+# Kimi 模型
+
+月之暗面（Moonshot AI）提供的 Kimi 系列大语言模型，支持超长上下文。
+
+## 主要模型
+
+| 模型 | 上下文 | 说明 |
+|------|--------|------|
+| moonshot-v1-8k | 8K | Kimi 8K 版本 |
+| moonshot-v1-32k | 32K | Kimi 32K 版本 |
+| moonshot-v1-128k | 128K | Kimi 128K 版本 |
+| moonshot-v1-1m | 1M | Kimi 超长上下文版本 |
+
+## 特点
+
+- **超长上下文**: 支持最长 1M token 上下文
+- **中文优化**: 针对中文场景优化
+- **长文档处理**: 适合处理长文档、长对话
+
+## 使用示例
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="moonshot-v1-128k",
+    messages=[{"role": "user", "content": "你好！"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+## 适用场景
+
+- 长文档分析和总结
+- 长对话历史维护
+- 代码库分析
+- 学术论文阅读
+
+查看 [模型总览](/models/models) 了解更多模型。

@@ -1,0 +1,289 @@
+---
+title: 视觉模型
+displayTitle: 视觉模型
+description: 使用视觉模型理解和分析图像
+slug: features/vision
+published: true
+category: 功能文档
+order: 4
+---
+
+# 视觉模型
+
+视觉模型可以理解和分析图像内容，支持图像描述、OCR、视觉问答等功能。
+
+## 基本用法
+
+### 分析图像URL
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "这张图片里有什么？"},
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": "https://example.com/image.jpg"
+                    }
+                }
+            ]
+        }
+    ]
+)
+
+print(response.choices[0].message.content)
+```
+
+### 分析本地图像
+
+```python
+import base64
+
+# 读取并编码图像
+def encode_image(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode('utf-8')
+
+image_base64 = encode_image("path/to/image.jpg")
+
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "描述这张图片"},
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": f"data:image/jpeg;base64,{image_base64}"
+                    }
+                }
+            ]
+        }
+    ]
+)
+
+print(response.choices[0].message.content)
+```
+
+## 多图像分析
+
+一次分析多张图像：
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "比较这两张图片的区别"},
+                {
+                    "type": "image_url",
+                    "image_url": {"url": "https://example.com/image1.jpg"}
+                },
+                {
+                    "type": "image_url",
+                    "image_url": {"url": "https://example.com/image2.jpg"}
+                }
+            ]
+        }
+    ]
+)
+```
+
+## 图像分辨率控制
+
+控制图像处理的详细程度：
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "详细描述这张图片"},
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": "https://example.com/image.jpg",
+                        "detail": "high"  # low, high, auto
+                    }
+                }
+            ]
+        }
+    ]
+)
+```
+
+## 常见应用场景
+
+### 图像描述
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "详细描述这张图片的内容、颜色、构图和氛围"},
+                {"type": "image_url", "image_url": {"url": image_url}}
+            ]
+        }
+    ]
+)
+```
+
+### OCR 文字识别
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "提取图片中的所有文字"},
+                {"type": "image_url", "image_url": {"url": image_url}}
+            ]
+        }
+    ]
+)
+```
+
+### 视觉问答
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "图片中有几个人？他们在做什么？"},
+                {"type": "image_url", "image_url": {"url": image_url}}
+            ]
+        }
+    ]
+)
+```
+
+### 图表分析
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "分析这个图表，总结主要趋势和数据"},
+                {"type": "image_url", "image_url": {"url": chart_url}}
+            ]
+        }
+    ]
+)
+```
+
+### 代码截图识别
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "识别这段代码并解释它的功能"},
+                {"type": "image_url", "image_url": {"url": code_screenshot_url}}
+            ]
+        }
+    ]
+)
+```
+
+## 支持的模型
+
+以下模型支持视觉功能：
+
+| 模型 | 说明 |
+|------|------|
+| gpt-4o | 最强视觉模型 |
+| gpt-4o-mini | 轻量视觉模型 |
+| claude-3.5-sonnet | Claude 视觉模型 |
+| claude-3-opus | Claude 高级视觉模型 |
+| gemini-2.0-flash | Gemini 视觉模型 |
+| gemini-1.5-pro | Gemini 专业视觉模型 |
+| qwen-vl-max | 通义千问视觉模型 |
+| qwen-vl-plus | 通义千问视觉增强版 |
+
+```python
+# 使用不同的视觉模型
+models = ["gpt-4o", "claude-3.5-sonnet", "qwen-vl-max"]
+
+for model in models:
+    response = client.chat.completions.create(
+        model=model,
+        messages=[
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": "描述这张图片"},
+                    {"type": "image_url", "image_url": {"url": image_url}}
+                ]
+            }
+        ]
+    )
+    print(f"{model}: {response.choices[0].message.content}\n")
+```
+
+## 最佳实践
+
+1. **清晰的提示词** - 明确说明你想要什么信息
+2. **图像质量** - 使用清晰的高质量图像
+3. **合适的分辨率** - 根据需求选择 detail 参数
+4. **批量处理** - 一次处理多张相关图像
+5. **成本控制** - 高分辨率图像消耗更多 token
+
+```python
+# 优化图像大小
+from PIL import Image
+import io
+
+def optimize_image(image_path, max_size=2048):
+    img = Image.open(image_path)
+    
+    # 调整大小
+    if max(img.size) > max_size:
+        ratio = max_size / max(img.size)
+        new_size = tuple(int(dim * ratio) for dim in img.size)
+        img = img.resize(new_size, Image.LANCZOS)
+    
+    # 转换为 base64
+    buffer = io.BytesIO()
+    img.save(buffer, format="JPEG", quality=85)
+    return base64.b64encode(buffer.getvalue()).decode()
+```
+
+## 限制说明
+
+- 图像大小限制：通常为 20MB
+- 支持格式：JPEG, PNG, GIF, WebP
+- 不支持：视频文件（需要提取帧）
+- Token 消耗：高分辨率图像消耗更多 token
+
+查看 [模型总览](/models/models) 了解所有可用模型。

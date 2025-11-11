@@ -1,0 +1,121 @@
+---
+title: 快速开始 - 5 分钟接入 Agicto API | 兼容 OpenAI SDK
+displayTitle: 快速开始
+description: 5 分钟快速接入 Agicto API，完全兼容 OpenAI SDK。支持 Python、Node.js、cURL，只需修改 Base URL 即可使用 1000+ 大语言模型。
+slug: getting-started/quickstart
+published: true
+category: 入门指南
+order: 2
+---
+
+# 快速开始
+
+Agicto 完全兼容 OpenAI SDK，只需更换 **base URL** 和 **API Key**，无需修改任何代码。
+
+## 前置准备
+
+在开始之前，请确保：
+
+1. 已注册 Agicto 账户并获取 API Key
+2. 账户余额充足
+3. 了解 [计费规则](https://agicto.com/pricing)
+
+## Base URL
+
+所有 API 请求使用以下 Base URL：
+
+```bash
+https://api.agicto.cn/v1
+```
+
+## 安装 SDK
+
+<div class="code-tabs">
+  <div class="code-tab-buttons">
+    <button class="code-tab-button active" data-tab="npm">npm</button>
+    <button class="code-tab-button" data-tab="pip">pip</button>
+  </div>
+  <div class="code-tab-content active" data-tab="npm">
+
+```bash
+npm install openai
+```
+
+  </div>
+  <div class="code-tab-content" data-tab="pip">
+
+```bash
+pip install openai
+```
+
+  </div>
+</div>
+
+## 代码示例
+
+### Python
+
+```python index.py
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "user", "content": "讲个笑话"}
+    ]
+)
+
+print(response.choices[0].message.content)
+```
+
+### Node.js
+
+```javascript index.js
+import OpenAI from 'openai';
+
+const client = new OpenAI({
+  apiKey: 'your-api-key',
+  baseURL: 'https://api.agicto.cn/v1',
+});
+
+const response = await client.chat.completions.create({
+  model: 'gpt-4o-mini',
+  messages: [
+    { role: 'user', content: 'Hello!' }
+  ],
+});
+
+console.log(response.choices[0].message.content);
+```
+
+### cURL
+
+```bash
+curl https://api.agicto.cn/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -d '{
+    "model": "gpt-4o-mini",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hello!"
+      }
+    ]
+  }'
+```
+
+## 下一步
+
+- [查看所有支持的模型](/models/models)
+- [了解 API 参数](/api-reference/introduction)
+- [查看更多示例](/guides/openai-compatibility)
+
+## 需要帮助？
+
+如有问题，请添加微信：**starkwang_** 获取技术支持

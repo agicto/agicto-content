@@ -1,0 +1,327 @@
+---
+title: 图像生成
+displayTitle: 图像生成
+description: 使用 AI 模型生成图像
+slug: features/image-generation
+published: true
+category: 功能文档
+order: 5
+---
+
+# 图像生成
+
+使用 AI 模型根据文本描述生成图像。
+
+## 基本用法
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="一只可爱的橘猫坐在窗台上，阳光洒在它身上，水彩画风格",
+    size="1024x1024",
+    quality="standard",
+    n=1
+)
+
+image_url = response.data[0].url
+print(f"图像URL: {image_url}")
+```
+
+## 参数说明
+
+### prompt
+
+描述你想生成的图像：
+
+```python
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="""
+    一个未来主义的城市景观，
+    高楼大厦之间有飞行汽车，
+    霓虹灯光，赛博朋克风格，
+    夜晚场景，高质量，细节丰富
+    """,
+    size="1024x1024"
+)
+```
+
+### size
+
+图像尺寸：
+
+```python
+# DALL-E 3 支持的尺寸
+sizes = ["1024x1024", "1024x1792", "1792x1024"]
+
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="山水画",
+    size="1792x1024"  # 横向图像
+)
+```
+
+### quality
+
+图像质量（仅 DALL-E 3）：
+
+```python
+# standard: 标准质量，更快更便宜
+# hd: 高清质量，更多细节
+
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="精美的风景照片",
+    quality="hd"  # 高清质量
+)
+```
+
+### style
+
+图像风格（仅 DALL-E 3）：
+
+```python
+# vivid: 生动鲜艳的色彩
+# natural: 自然真实的风格
+
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="日落海滩",
+    style="vivid"  # 鲜艳风格
+)
+```
+
+### n
+
+生成图像数量：
+
+```python
+# DALL-E 2 支持一次生成多张
+response = client.images.generate(
+    model="dall-e-2",
+    prompt="抽象艺术",
+    n=4  # 生成4张
+)
+
+for i, image in enumerate(response.data):
+    print(f"图像 {i+1}: {image.url}")
+```
+
+## 下载图像
+
+```python
+import requests
+from PIL import Image
+from io import BytesIO
+
+def download_image(url, save_path):
+    response = requests.get(url)
+    img = Image.open(BytesIO(response.content))
+    img.save(save_path)
+    return img
+
+# 生成并下载
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="可爱的小狗"
+)
+
+image_url = response.data[0].url
+download_image(image_url, "generated_image.png")
+```
+
+## 图像编辑
+
+基于现有图像进行编辑：
+
+```python
+response = client.images.edit(
+    model="dall-e-2",
+    image=open("original.png", "rb"),
+    mask=open("mask.png", "rb"),  # 透明区域将被编辑
+    prompt="在空白区域添加一只猫",
+    size="1024x1024",
+    n=1
+)
+```
+
+## 图像变体
+
+生成现有图像的变体：
+
+```python
+response = client.images.create_variation(
+    model="dall-e-2",
+    image=open("original.png", "rb"),
+    n=3,  # 生成3个变体
+    size="1024x1024"
+)
+
+for i, image in enumerate(response.data):
+    print(f"变体 {i+1}: {image.url}")
+```
+
+## 支持的模型
+
+| 模型 | 尺寸 | 特点 |
+|------|------|------|
+| dall-e-3 | 1024x1024, 1024x1792, 1792x1024 | 最新模型，质量最高 |
+| dall-e-2 | 256x256, 512x512, 1024x1024 | 支持编辑和变体 |
+
+```python
+# 使用 DALL-E 3
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="未来城市",
+    size="1024x1024",
+    quality="hd"
+)
+
+# 使用 DALL-E 2
+response = client.images.generate(
+    model="dall-e-2",
+    prompt="抽象艺术",
+    size="512x512",
+    n=4
+)
+```
+
+## 提示词技巧
+
+### 详细描述
+
+```python
+prompt = """
+主体：一只金色的拉布拉多犬
+动作：在草地上奔跑
+环境：阳光明媚的公园，绿树成荫
+风格：写实摄影风格
+光线：自然光，黄金时段
+质量：高清，细节丰富
+"""
+```
+
+### 艺术风格
+
+```python
+styles = [
+    "水彩画风格",
+    "油画风格",
+    "素描风格",
+    "动漫风格",
+    "像素艺术风格",
+    "赛博朋克风格",
+    "蒸汽朋克风格",
+    "极简主义风格"
+]
+
+for style in styles:
+    response = client.images.generate(
+        model="dall-e-3",
+        prompt=f"一座城堡，{style}"
+    )
+```
+
+### 参考艺术家
+
+```python
+prompt = "山水画，宫崎骏风格，吉卜力工作室，动画电影场景"
+```
+
+## 批量生成
+
+```python
+prompts = [
+    "春天的樱花树",
+    "夏天的海滩",
+    "秋天的枫叶",
+    "冬天的雪景"
+]
+
+images = []
+for prompt in prompts:
+    response = client.images.generate(
+        model="dall-e-3",
+        prompt=prompt,
+        size="1024x1024"
+    )
+    images.append(response.data[0].url)
+    print(f"生成: {prompt}")
+
+# 下载所有图像
+for i, url in enumerate(images):
+    download_image(url, f"season_{i+1}.png")
+```
+
+## 最佳实践
+
+1. **详细的提示词** - 包含主体、动作、环境、风格、光线等
+2. **使用否定词** - 说明不想要的元素（在提示词中明确）
+3. **参考风格** - 指定艺术风格或参考艺术家
+4. **迭代优化** - 根据结果调整提示词
+5. **合理选择尺寸** - 根据用途选择合适的尺寸
+
+```python
+# 优化的提示词模板
+def generate_with_template(subject, action, environment, style, quality="hd"):
+    prompt = f"""
+    主体：{subject}
+    动作：{action}
+    环境：{environment}
+    风格：{style}
+    质量：高清，细节丰富，专业摄影
+    """
+    
+    response = client.images.generate(
+        model="dall-e-3",
+        prompt=prompt,
+        quality=quality,
+        size="1024x1024"
+    )
+    
+    return response.data[0].url
+
+# 使用模板
+url = generate_with_template(
+    subject="一只橘猫",
+    action="在窗台上晒太阳",
+    environment="温馨的家居环境，阳光洒进来",
+    style="温暖的色调，自然光摄影"
+)
+```
+
+## 成本优化
+
+```python
+# 使用标准质量节省成本
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="简单的图标设计",
+    quality="standard",  # 而不是 "hd"
+    size="1024x1024"
+)
+
+# 使用 DALL-E 2 生成多个变体
+response = client.images.generate(
+    model="dall-e-2",  # 更便宜
+    prompt="logo设计",
+    n=4,  # 一次生成多个
+    size="512x512"
+)
+```
+
+## 注意事项
+
+- 遵守内容政策，不生成违规内容
+- 图像URL有效期有限，及时下载
+- 高质量图像消耗更多成本
+- 复杂提示词可能需要多次尝试
+
+查看 [模型总览](/models/models) 了解所有可用模型。
