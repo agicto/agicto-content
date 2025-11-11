@@ -1,0 +1,67 @@
+export const metadata = {
+  title: 'Meta AI',
+  description:
+    'This guide will get you all set up and ready to use the Protocol API. We’ll cover how to get started an API client and how to make your first API request.',
+}
+
+
+# 支持的模型
+
+支持 Meta API 的模型与上下文长度:
+
+- meta-llama/Llama-3-8b-chat-hf   | 8000 |
+- meta-llama/Llama-3-70b-chat-hf  | 8000 |
+- codellama/CodeLlama-13b-Instruct-hf        | 16384          |
+- codellama/CodeLlama-34b-Instruct-hf        | 16384          |
+- codellama/CodeLlama-70b-Instruct-hf        | 4096           |
+- codellama/CodeLlama-7b-Instruct-hf         | 16384          |
+- meta-llama/Llama-2-70b-chat-hf             | 4096           |
+- meta-llama/Llama-2-13b-chat-hf             | 4096           |
+- meta-llama/Llama-2-7b-chat-hf              | 4096           |
+
+
+
+<CodeGroup>
+
+```bash {{ language: 'python' }}
+from openai import OpenAI
+
+client = OpenAI(
+    api_key = "自己的API key",
+    base_url = "https://api.agicto.cn/v1"
+)
+
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "你是谁，用中文回答",
+        }
+    ],
+    model="meta-llama/Llama-3-70b-chat-hf",
+)
+print(chat_completion.choices[0].message.content)
+```
+
+```javascript {{ language: 'nodejs' }}
+import OpenAI from "openai";
+
+const openai = new OpenAI();
+
+async function main() {
+  const completion = await openai.chat.completions.create({
+    messages: [
+        {
+            "role": "user",
+            "content": "你是谁，用中文回答",
+        }],
+    model: "meta-llama/Llama-3-70b-chat-hf",
+  });
+
+  console.log(completion.choices[0]);
+}
+
+main();
+```
+
+</CodeGroup>

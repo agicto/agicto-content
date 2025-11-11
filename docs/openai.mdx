@@ -1,0 +1,80 @@
+export const metadata = {
+  title: 'Open AI',
+  description:
+    'This guide will get you all set up and ready to use the Protocol API. We’ll cover how to get started an API client and how to make your first API request.',
+}
+
+# 支持的模型
+
+OpenAI API支持的模型和上下文长度:
+
+### OpenAI 模型
+|   平台    | 模式标识符              |   备注                         |
+|----------|------------------------|-------------------------------|
+|    GPT   | gpt-3.5-turbo          |                               |
+|    GPT   | gpt-3.5-turbo-1106     |                               |
+|    GPT   | gpt-3.5-turbo-0125     |                               |
+|    GPT   | gpt-3.5-turbo-0613     |                               |
+|    GPT   | gpt-3.5-turbo-instruct |                               |
+|    GPT   | gpt-3.5-turbo-16k      |                               |
+|    GPT   | gpt-3.5-turbo-16k-0613 |                               |
+|    GPT   | gpt-3.5-turbo-0301     |                               |
+|    GPT   | gpt-4-0125-preview     |                               |
+|    GPT   | gpt-4-1106-preview     |                               |
+|    GPT   | gpt-4-1106-vision-preview |                            |
+|    GPT   | gpt-4                  |                               |
+|    GPT   | dall-e-2               |                               |
+|    GPT   | dall-e-3               |                               |
+|    GPT   | gpt-4-0314             |                               |
+|    GPT   | gpt-4-0613             |                               |
+|    GPT   | gpt-4-32k-0314         |                               |
+|    GPT   | gpt-4-32k              |                               |
+|    GPT   | gpt-4-turbo-2024-04-09 |                               |
+|    GPT   | gpt-4-turbo            |                               |
+|    GPT   | gpt-4-turbo-preview    |                               |
+
+
+<CodeGroup>
+
+```bash {{ language: 'python' }}
+from openai import OpenAI
+
+client = OpenAI(
+    api_key = "自己的API key",
+    base_url = "https://api.agicto.cn/v1"
+)
+
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "你是谁，用中文回答",
+        }
+    ],
+    model="gpt-3.5-turbo",
+)
+print(chat_completion.choices[0].message.content)
+```
+
+```javascript {{ language: 'nodejs' }}
+import OpenAI from "openai";
+
+const openai = new OpenAI();
+
+async function main() {
+  const completion = await openai.chat.completions.create({
+    messages: [
+        {
+            "role": "user",
+            "content": "你是谁，用中文回答",
+        }],
+    model: "gpt-3.5-turbo",
+  });
+
+  console.log(completion.choices[0]);
+}
+
+main();
+```
+
+</CodeGroup>

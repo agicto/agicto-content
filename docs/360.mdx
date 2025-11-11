@@ -1,0 +1,61 @@
+export const metadata = {
+  title: '360',
+  description:
+    'This guide will get you all set up and ready to use the Protocol API. We’ll cover how to get started an API client and how to make your first API request.',
+}
+
+# 支持的模型
+
+360 API支持的模型和上下文长度:
+
+### 360 模型
+|   平台    | 模式标识符              |   备注                         |
+|----------|------------------------|-------------------------------|
+|  360     | 360GPT_S2_V9           |                               |
+|  360     | 360gpt-pro             |                               |
+
+
+<CodeGroup>
+
+```bash {{ language: 'python' }}
+from openai import OpenAI
+
+client = OpenAI(
+    api_key = "自己的API key",
+    base_url = "https://api.agicto.cn/v1"
+)
+
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "你是谁，用中文回答",
+        }
+    ],
+    model="360GPT_S2_V9 ",
+)
+print(chat_completion.choices[0].message.content)
+```
+
+```javascript {{ language: 'nodejs' }}
+import OpenAI from "openai";
+
+const openai = new OpenAI();
+
+async function main() {
+  const completion = await openai.chat.completions.create({
+    messages: [
+        {
+            "role": "user",
+            "content": "你是谁，用中文回答",
+        }],
+    model: "360GPT_S2_V9 ",
+  });
+
+  console.log(completion.choices[0]);
+}
+
+main();
+```
+
+</CodeGroup>

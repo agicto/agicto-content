@@ -1,0 +1,122 @@
+export const metadata = {
+  title: '快速开始',
+  description:
+    'AGICTO 是一站式服务接口，支持 OpenAI 所有模型及全球开源和闭源模型，只需更换 base url 和 模型即可使用。',
+}
+
+import { MdxImage as Image } from '@/components/MdxImage'
+
+# 快速开始
+
+<Note>简单易用，兼容 OpenAI SDK 所有模型只需要更换 base url 和 模型即可</Note>
+
+# 模型接入指南
+
+在尝试接入我们的一站式服务接口前，请先确保执行以下步骤，以保障您的使用体验无忧：
+
+- 查验您的账户余额以确认资金是否足够。
+- 访问我们的计费规则页面，详细了解不同模型的费用标准，帮助您进行预算规划。
+
+# 快速使用
+
+## 接口：Base url
+
+<CodeGroup>
+
+```bash {{ language: 'shell' }}
+https://api.agicto.cn/v1
+```
+
+</CodeGroup>
+
+## 在项目文件夹下，安装项目依赖的包
+
+<CodeGroup>
+
+```bash {{ title: 'pip' }}
+# 下载 openai 包
+pip install openai
+```
+
+</CodeGroup>
+
+## 新建 index.py 文件
+
+<CodeGroup title="支持的语言">
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key = "自己的API key",
+    base_url = "https://api.agicto.cn/v1"
+)
+
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "讲个笑话",
+        }
+    ],
+    model="gpt-4o-mini", #此处更换其它模型,请参考模型列表 eg: google/gemma-7b-it
+)
+
+print(chat_completion.choices[0].message.content)
+```
+
+```js
+import OpenAI from 'openai'
+
+const openai = new OpenAI({
+  apiKey: '你自己的 key',
+  baseURL: 'https://api.agicto.cn/v1',
+})
+
+async function main() {
+  const completion = await openai.chat.completions.create({
+    messages: [
+      {
+        role: 'user',
+        content: '你是谁',
+      },
+    ],
+    model: 'gpt-4o-mini',
+  })
+
+  console.log(completion.choices[0])
+}
+
+main()
+```
+
+```bash {{ title: 'cURL' }}
+curl "https://api.agicto.cn/v1/chat/completions" \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer $OPENAI_API_KEY" \
+    -d '{
+        "model": "gpt-4o-mini",
+        "messages": [
+            {
+                "role": "system",
+                "content": "You are a helpful assistant."
+            },
+            {
+                "role": "user",
+                "content": "Write a haiku that explains the concept of recursion."
+            }
+        ]
+    }'
+```
+
+</CodeGroup>
+
+<Note>
+  技术支持
+  {/* <a
+    href="https://agictolab.feishu.cn/docx/YBYJdMEbmomjqoxlYg0cMkSLndh"
+    target="_blank"
+  > */}
+  AGICTO 技术支持 &raquo; 添加微信: starkwang_
+  {/* </a> */}
+</Note>

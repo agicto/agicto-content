@@ -1,0 +1,61 @@
+export const metadata = {
+  title: '零一万物',
+  description:
+    'This guide will get you all set up and ready to use the Protocol API. We’ll cover how to get started an API client and how to make your first API request.',
+}
+
+# 支持的模型
+
+零一万物 API支持的模型和上下文长度:
+
+### 零一万物 模型
+|   平台    | 模式标识符              |   备注                         |
+|----------|------------------------|-------------------------------|
+|    yi    | yi-34b-chat-0205       |                               |
+|    yi    | yi-34b-chat-200k       |                               |
+|    yi    | yi-vl-plus             |                               |
+
+<CodeGroup>
+
+```bash {{ language: 'python' }}
+from openai import OpenAI
+
+client = OpenAI(
+    api_key = "自己的API key",
+    base_url = "https://api.agicto.cn/v1"
+)
+
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "你是谁，用中文回答",
+        }
+    ],
+    model="yi-34b-chat-0205",
+)
+print(chat_completion.choices[0].message.content)
+```
+
+```javascript {{ language: 'nodejs' }}
+import OpenAI from "openai";
+
+const openai = new OpenAI();
+
+async function main() {
+  const completion = await openai.chat.completions.create({
+    messages: [
+        {
+            "role": "user",
+            "content": "你是谁，用中文回答",
+        }],
+    model: "yi-34b-chat-0205",
+  });
+
+  console.log(completion.choices[0]);
+}
+
+main();
+```
+
+</CodeGroup>

@@ -1,0 +1,61 @@
+export const metadata = {
+  title: 'Gemini',
+  description:
+    'This guide will get you all set up and ready to use the Protocol API. We’ll cover how to get started an API client and how to make your first API request.',
+}
+
+# 支持的模型
+
+Gemini API支持的模型和上下文长度:
+
+### Gemini 模型
+|   平台    | 模式标识符              |   备注                         |
+|----------|------------------------|-------------------------------|
+| gemini   | google/gemini-pro      |                               |
+| gemini   | google/gemini-pro-vision | Vision-focused variant |
+
+
+<CodeGroup>
+
+```bash {{ language: 'python' }}
+from openai import OpenAI
+
+client = OpenAI(
+    api_key = "自己的API key",
+    base_url = "https://api.agicto.cn/v1"
+)
+
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "你是谁，用中文回答",
+        }
+    ],
+    model="google/gemini-pro",
+)
+print(chat_completion.choices[0].message.content)
+```
+
+```javascript {{ language: 'nodejs' }}
+import OpenAI from "openai";
+
+const openai = new OpenAI();
+
+async function main() {
+  const completion = await openai.chat.completions.create({
+    messages: [
+        {
+            "role": "user",
+            "content": "你是谁，用中文回答",
+        }],
+    model: "google/gemini-pro",
+  });
+
+  console.log(completion.choices[0]);
+}
+
+main();
+```
+
+</CodeGroup>
