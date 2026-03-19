@@ -1,0 +1,107 @@
+---
+title: OpenAI API Models - Complete Guide to GPT-5, GPT-4.1, and O-Series Reasoning Models
+displayTitle: OpenAI Models
+description: "All OpenAI models available through the API, including GPT-5, GPT-4.1, O-series reasoning models, image generation, speech recognition, and embeddings. Fully compatible with the OpenAI SDK."
+slug: models/openai
+published: true
+category: Models
+order: 2
+---
+
+# OpenAI Models
+
+Large language models from OpenAI, including GPT-5, GPT-4.1, and O-series reasoning models.
+
+## Frontier models
+
+| Model | Notes |
+|------|------|
+| gpt-5 | Most capable model for coding and agentic tasks |
+| gpt-5-mini | Faster and more cost-effective GPT-5 |
+| gpt-5-nano | Fastest and most economical GPT-5 |
+| gpt-5-pro | Professional-grade GPT-5 |
+| gpt-4.1 | Strongest non-reasoning model |
+| gpt-4.1-mini | Smaller GPT-4.1 |
+| gpt-4.1-nano | Fastest GPT-4.1 |
+
+## Reasoning models
+
+| Model | Notes |
+|------|------|
+| o3 | Reasoning model for complex tasks |
+| o4-mini | Fast and economical reasoning model |
+| o3-pro | Higher-compute version of o3 |
+| o3-mini | Smaller o3 |
+| o1 | Previous-generation reasoning model |
+| o1-mini | Smaller o1 |
+
+## Classic models
+
+| Model | Context | Notes |
+|------|--------|------|
+| gpt-4o | 128K | Fast, capable, flexible GPT model |
+| gpt-4o-mini | 128K | Fast and low-cost model |
+| gpt-4-turbo | 128K | High-intelligence GPT model |
+| gpt-3.5-turbo | 16K | Legacy GPT model |
+
+## Image generation
+
+| Model | Notes |
+|------|------|
+| gpt-image-1 | Most advanced image generation model |
+| gpt-image-1-mini | Lower-cost GPT Image 1 |
+| dall-e-3 | Previous-generation image model |
+| dall-e-2 | First-generation image model |
+
+## Video generation
+
+| Model | Notes |
+|------|------|
+| sora-2 | Flagship video generation with synchronized audio |
+| sora-2-pro | Higher-end synchronized audio/video generation |
+
+## Audio models
+
+| Model | Notes |
+|------|------|
+| gpt-realtime | Realtime text and audio input/output |
+| gpt-audio | Audio input/output |
+| gpt-4o-transcribe | GPT-4o speech-to-text |
+| whisper | General speech recognition |
+| tts-1 | Text-to-speech optimized for speed |
+| tts-1-hd | Text-to-speech optimized for quality |
+
+## Embedding models
+
+| Model | Notes |
+|------|------|
+| text-embedding-3-large | Highest-quality embeddings |
+| text-embedding-3-small | Smaller embedding model |
+| text-embedding-ada-002 | Legacy embedding model |
+
+## Open models
+
+| Model | Notes |
+|------|------|
+| gpt-oss-120b | Strongest open model, Apache 2.0 |
+| gpt-oss-20b | Mid-size open model with lower latency |
+
+## Example
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+See the [Model Overview](/models/models) for more supported models.

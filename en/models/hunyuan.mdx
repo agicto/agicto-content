@@ -1,0 +1,49 @@
+---
+title: Hunyuan API Models - Complete Guide to Hunyuan Large and Tencent Hunyuan
+displayTitle: Hunyuan
+description: "All Tencent Hunyuan models available through the API, including Hunyuan Large, Hunyuan Turbo, Hunyuan Lite, and Hunyuan Vision. Up to 250K context and fully compatible with the OpenAI SDK."
+slug: models/hunyuan
+published: true
+category: Models
+order: 9
+---
+
+# Hunyuan Models
+
+The Hunyuan family of large language models provided by Tencent.
+
+## Main models
+
+| Model | Context | Notes |
+|------|--------|------|
+| hunyuan-large | 28K | Hunyuan Large |
+| hunyuan-turbo | 28K | Hunyuan Turbo |
+| hunyuan-lite | 250K | Hunyuan Lite |
+| hunyuan-standard | 30K | Hunyuan Standard |
+| hunyuan-standard-256k | 250K | Hunyuan Standard long-context version |
+
+## Vision models
+
+| Model | Context | Notes |
+|------|--------|------|
+| hunyuan-vision | 16K | Hunyuan vision model |
+
+## Example
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="hunyuan-large",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+See the [Model Overview](/models/models) for more supported models.

@@ -1,0 +1,41 @@
+---
+title: Модели Doubao API - Полное руководство по моделям ByteDance Doubao
+displayTitle: Doubao
+description: "Все модели Doubao, доступные через API ByteDance: Doubao Pro и Doubao Lite. Сильные диалоговые возможности и полная совместимость с OpenAI SDK."
+slug: models/doubao
+published: true
+category: Модели
+order: 7
+---
+
+# Модели Doubao
+
+Семейство больших языковых моделей Doubao от ByteDance.
+
+## Основные модели
+
+| Модель | Описание |
+|------|------|
+| doubao-pro | Профессиональная версия |
+| doubao-lite | Облегченная версия |
+| doubao-character | Версия для ролевого общения |
+
+## Пример
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="doubao-pro",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+Смотрите [обзор моделей](/models/models), чтобы узнать о других моделях.

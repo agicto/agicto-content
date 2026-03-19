@@ -1,0 +1,52 @@
+---
+title: Qwen API Models - Complete Guide to Qwen Max, Qwen Plus, and Qwen Turbo
+displayTitle: Qwen
+description: "All Qwen models available through Alibaba Cloud, including Qwen Max, Qwen Plus, Qwen Turbo, and Qwen VL vision models. Strong Chinese capability, long context, and full OpenAI SDK compatibility."
+slug: models/qwen
+published: true
+category: Models
+order: 6
+---
+
+# Qwen Models
+
+The Qwen family of large language models provided by Alibaba Cloud.
+
+## Main models
+
+| Model | Context | Notes |
+|------|--------|------|
+| qwen-max | 32K | Most capable Qwen model |
+| qwen-plus | 128K | Enhanced Qwen model |
+| qwen-turbo | 128K | Fast Qwen model |
+| qwen3-max | - | Strongest Qwen 3 model |
+| qwen3-235b | - | Qwen 3 with 235B parameters |
+| qwen3-32b | - | Qwen 3 with 32B parameters |
+| qwq-plus | 128K | Reasoning-enhanced Qwen model |
+
+## Vision models
+
+| Model | Context | Notes |
+|------|--------|------|
+| qwen-vl-max | 8K | Strongest Qwen vision model |
+| qwen-vl-plus | 8K | Enhanced Qwen vision model |
+
+## Example
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="qwen-max",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+See the [Model Overview](/models/models) for more supported models.

@@ -1,0 +1,55 @@
+---
+title: Модели Kimi API - Полное руководство по длинноконтекстным моделям Moonshot AI
+displayTitle: Kimi
+description: "Все модели Kimi, доступные через API Moonshot AI: Moonshot V1 128K и Moonshot V1 1M. Поддержка до 1M токенов контекста и полная совместимость с OpenAI SDK."
+slug: models/kimi
+published: true
+category: Модели
+order: 10
+---
+
+# Модели Kimi
+
+Семейство больших языковых моделей Kimi от Moonshot AI для задач с длинным контекстом.
+
+## Основные модели
+
+| Модель | Контекст | Описание |
+|------|--------|------|
+| kimi-k1.5 | - | Актуальная reasoning-модель Kimi |
+| kimi-k2-thinking | - | Модель рассуждения с chain-of-thought |
+| moonshot-v1-128k | 128K | Версия с контекстом 128K |
+| moonshot-v1-1m | 1M | Версия со сверхдлинным контекстом |
+
+## Ключевые особенности
+
+- **Длинный контекст**: до 1M токенов
+- **Оптимизация для китайского языка**: сильные результаты на китайских задачах
+- **Работа с документами**: удобно для длинных документов и длинных диалогов
+
+## Пример
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="moonshot-v1-128k",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+## Подходящие сценарии
+
+- Анализ и суммаризация длинных документов
+- Поддержание длинной истории диалога
+- Анализ кодовой базы
+- Чтение научных статей
+
+Смотрите [обзор моделей](/models/models), чтобы узнать о других моделях.

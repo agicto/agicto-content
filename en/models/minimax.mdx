@@ -1,0 +1,69 @@
+---
+title: MiniMax API Models - Complete Guide to ABAB 6.5 and Speech Models
+displayTitle: MiniMax
+description: "All MiniMax models available through the API, including ABAB 6.5S Chat, ABAB 6.5 Chat, and Speech-01. Strong Chinese conversation and speech synthesis support, fully compatible with the OpenAI SDK."
+slug: models/minimax
+published: true
+category: Models
+order: 11
+---
+
+# MiniMax Models
+
+Large language and speech models provided by MiniMax.
+
+## Main models
+
+| Model | Notes |
+|------|------|
+| abab7-preview | MiniMax 7.0 preview, latest flagship |
+| abab6.5s-chat | MiniMax 6.5S chat model |
+| abab6.5-chat | MiniMax 6.5 chat model |
+
+## Speech models
+
+| Model | Notes |
+|------|------|
+| speech-01 | MiniMax speech synthesis |
+| speech-01-turbo | Faster speech synthesis |
+
+## Example
+
+### Text generation
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="abab6.5s-chat",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+### Speech synthesis
+
+```python
+response = client.audio.speech.create(
+    model="speech-01",
+    voice="female-tianmei",
+    input="Hello, welcome to MiniMax"
+)
+
+with open("output.mp3", "wb") as f:
+    f.write(response.content)
+```
+
+## Highlights
+
+- Strong Chinese conversational ability
+- Supports speech synthesis
+- Multiple voice options
+
+See the [Model Overview](/models/models) for more supported models.

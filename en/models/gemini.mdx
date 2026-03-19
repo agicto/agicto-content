@@ -1,0 +1,55 @@
+---
+title: Google Gemini API Models - Complete Guide to Gemini 2.0 Flash and Gemini 1.5 Pro
+displayTitle: Gemini Models
+description: "All Gemini models available through the Google API, including Gemini 2.0 Flash, Gemini 1.5 Pro, and Gemini Pro. Native multimodal support for text, images, and video, fully compatible with the OpenAI SDK."
+slug: models/gemini
+published: true
+category: Models
+order: 4
+---
+
+# Gemini Models
+
+The Gemini family of large language models provided by Google.
+
+## Main models
+
+| Model | Notes |
+|------|------|
+| gemini-2.5-flash | Gemini 2.5 Flash |
+| gemini-2.0-flash | Gemini 2.0 Flash |
+| gemini-1.5-pro | Gemini 1.5 Pro |
+| gemini-1.5-flash | Gemini 1.5 Flash |
+| gemini-pro | Gemini Pro |
+
+## Image generation
+
+| Model | Notes |
+|------|------|
+| gemini-2.5-flash-image | Gemini 2.5 image generation |
+
+## Audio models
+
+| Model | Notes |
+|------|------|
+| gemini-2.5-flash-native-audio | Gemini 2.5 native audio |
+
+## Example
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="gemini-2.0-flash",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+See the [Model Overview](/models/models) for more supported models.

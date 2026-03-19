@@ -1,0 +1,52 @@
+---
+title: Модели Qwen API - Полное руководство по Qwen Max, Qwen Plus и Qwen Turbo
+displayTitle: Qwen
+description: "Все модели Qwen от Alibaba Cloud: Qwen Max, Qwen Plus, Qwen Turbo и vision-модели Qwen VL. Сильная работа с китайским языком, длинный контекст и полная совместимость с OpenAI SDK."
+slug: models/qwen
+published: true
+category: Модели
+order: 6
+---
+
+# Модели Qwen
+
+Семейство больших языковых моделей Qwen от Alibaba Cloud.
+
+## Основные модели
+
+| Модель | Контекст | Описание |
+|------|--------|------|
+| qwen-max | 32K | Самая сильная модель Qwen |
+| qwen-plus | 128K | Улучшенная версия Qwen |
+| qwen-turbo | 128K | Быстрая версия Qwen |
+| qwen3-max | - | Самая сильная модель Qwen 3 |
+| qwen3-235b | - | Qwen 3 с 235B параметров |
+| qwen3-32b | - | Qwen 3 с 32B параметров |
+| qwq-plus | 128K | Версия Qwen с усиленным reasoning |
+
+## Визуальные модели
+
+| Модель | Контекст | Описание |
+|------|--------|------|
+| qwen-vl-max | 8K | Самая сильная vision-модель Qwen |
+| qwen-vl-plus | 8K | Улучшенная vision-модель Qwen |
+
+## Пример
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="qwen-max",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+Смотрите [обзор моделей](/models/models), чтобы узнать о других моделях.

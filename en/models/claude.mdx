@@ -1,0 +1,44 @@
+---
+title: Claude API Models - Complete Guide to Claude 3.5 Sonnet and Claude 4 Opus
+displayTitle: Claude Models
+description: "All Claude models available through the Anthropic API, including Claude 3.5 Sonnet, Claude 4 Opus, and Claude 3 Haiku. 200K context and strong reasoning, fully compatible with the OpenAI SDK."
+slug: models/claude
+published: true
+category: Models
+order: 3
+---
+
+# Claude Models
+
+The Claude family of large language models provided by Anthropic.
+
+## Main models
+
+| Model | Context | Notes |
+|------|--------|------|
+| claude-opus-4 | 200K | Claude 4 Opus flagship model |
+| claude-sonnet-4-5 | 200K | Claude 4.5 Sonnet |
+| claude-haiku-4-5 | 200K | Claude 4.5 Haiku lightweight version |
+| claude-3.5-sonnet | 200K | Claude 3.5 Sonnet |
+| claude-3-opus | 200K | Claude 3 Opus |
+| claude-3-haiku | 200K | Claude 3 Haiku |
+
+## Example
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="claude-sonnet-4-5",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+See the [Model Overview](/models/models) for more supported models.

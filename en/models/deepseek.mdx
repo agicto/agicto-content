@@ -1,0 +1,42 @@
+---
+title: DeepSeek API Models - Complete Guide to DeepSeek V3 and DeepSeek Coder
+displayTitle: DeepSeek Models
+description: "All DeepSeek models available through the API, including DeepSeek V3, DeepSeek Chat, and DeepSeek Coder. Open-source LLMs with strong coding capability, fully compatible with the OpenAI SDK."
+slug: models/deepseek
+published: true
+category: Models
+order: 5
+---
+
+# DeepSeek Models
+
+Open-source large language models provided by DeepSeek.
+
+## Main models
+
+| Model | Notes |
+|------|------|
+| deepseek-v3.2 | Latest DeepSeek V3.2 release |
+| deepseek-v3.1 | DeepSeek V3.1 |
+| deepseek-v3 | DeepSeek V3 |
+| deepseek-chat | DeepSeek chat model |
+
+## Example
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="deepseek-v3",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+See the [Model Overview](/models/models) for more supported models.

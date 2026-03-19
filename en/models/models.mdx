@@ -1,0 +1,198 @@
+---
+title: AI Model Overview - 1000+ LLM APIs Including OpenAI, Claude, and Gemini
+displayTitle: Model Overview
+description: "Agicto supports 1000+ AI models including OpenAI GPT-4o, Claude 3.5, Gemini 2.0, DeepSeek V3, Qwen, ERNIE, Hunyuan, and Kimi. One API for all models, fully compatible with the OpenAI SDK."
+slug: models/models
+published: true
+category: Models
+order: 1
+---
+
+# Model Overview
+
+Agicto gives you access to 1000+ AI models through one unified API.
+
+For the complete model catalog and real-time pricing, visit [https://agicto.com/model](https://agicto.com/model).
+
+## Leading global models
+
+### OpenAI
+
+OpenAI provides industry-leading LLMs across general chat, reasoning, image, audio, and embeddings.
+
+**Core models**
+- **gpt-5**: Best for coding and agentic tasks
+- **gpt-4.1**: Strong general-purpose non-reasoning model
+- **o3**: Advanced reasoning model
+- **gpt-4o-mini**: Fast and cost-effective
+
+**Capabilities**
+- Image generation
+- Speech recognition
+- Embeddings
+- Realtime audio
+
+[View details](/models/openai)
+
+### Claude (Anthropic)
+
+Claude is known for long context windows, strong reasoning, and high-quality writing.
+
+**Core models**
+- **claude-opus-4**
+- **claude-sonnet-4-5**
+- **claude-haiku-4-5**
+
+**Capabilities**
+- Up to 200K context
+- Strong coding and analysis
+- Reliable long-form output
+
+[View details](/models/claude)
+
+### Google Gemini
+
+Gemini focuses on multimodal understanding across text, images, audio, and video.
+
+**Core models**
+- **gemini-2.5-flash**
+- **gemini-2.0-flash**
+- **gemini-1.5-pro**
+
+**Capabilities**
+- Native multimodal processing
+- Image generation
+- Audio input and output
+
+[View details](/models/gemini)
+
+### DeepSeek
+
+DeepSeek offers open-source-friendly models with strong coding performance.
+
+**Core models**
+- **deepseek-v3.2**
+- **deepseek-v3**
+- **deepseek-chat**
+
+**Capabilities**
+- Open models
+- Strong code generation
+- Good price-performance ratio
+
+[View details](/models/deepseek)
+
+## Leading Chinese models
+
+### Qwen (Alibaba Cloud)
+
+Qwen is strong in Chinese tasks and offers both chat and vision models.
+
+**Core models**
+- **qwen-max**
+- **qwen-plus**
+- **qwen-turbo**
+- **qwen-vl-max**
+
+[View details](/models/qwen)
+
+### ERNIE (Baidu)
+
+ERNIE is optimized for Chinese understanding and enterprise use cases.
+
+**Core models**
+- **ernie-4.0**
+- **ernie-speed**
+- **ernie-lite**
+
+[View details](/models/ernie)
+
+### Hunyuan (Tencent)
+
+Hunyuan provides long-context and multimodal capabilities.
+
+**Core models**
+- **hunyuan-large**
+- **hunyuan-turbo**
+- **hunyuan-lite**
+- **hunyuan-vision**
+
+[View details](/models/hunyuan)
+
+### Doubao (ByteDance)
+
+Doubao is focused on conversational tasks and lightweight deployment.
+
+**Core models**
+- **doubao-pro**
+- **doubao-lite**
+
+[View details](/models/doubao)
+
+### Kimi (Moonshot AI)
+
+Kimi is well known for long-context reasoning and document analysis.
+
+**Core models**
+- **kimi-k1.5**
+- **kimi-k2-thinking**
+- **moonshot-v1-128k**
+- **moonshot-v1-1m**
+
+[View details](/models/kimi)
+
+### MiniMax
+
+MiniMax combines chat models and speech generation models.
+
+**Core models**
+- **abab7-preview**
+- **abab6.5s-chat**
+- **speech-01**
+
+[View details](/models/minimax)
+
+## How to choose a model
+
+### By task type
+
+- **Complex reasoning**: o3, claude-opus-4, kimi-k1.5
+- **Everyday chat**: gpt-4o-mini, deepseek-v3, qwen-turbo
+- **Coding**: gpt-5, claude-sonnet-4-5, deepseek-v3.2
+- **Chinese tasks**: qwen-max, ernie-4.0, hunyuan-large
+- **Long documents**: moonshot-v1-1m, claude-opus-4, hunyuan-lite
+- **Multimodal**: gpt-4o, gemini-2.5-flash, qwen-vl-max
+
+### By cost efficiency
+
+- **Budget-friendly**: gpt-4o-mini, deepseek-v3, doubao-lite
+- **Balanced**: qwen-plus, hunyuan-turbo, gemini-1.5-flash
+- **Top capability**: gpt-5, claude-opus-4, kimi-k1.5
+
+## Example
+
+All models use the same API interface. You only change the `model` parameter:
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+response = client.chat.completions.create(
+    model="claude-sonnet-4-5",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+response = client.chat.completions.create(
+    model="qwen-max",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+```

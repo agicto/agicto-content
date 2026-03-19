@@ -1,0 +1,69 @@
+---
+title: Модели MiniMax API - Полное руководство по ABAB 6.5 и speech-моделям
+displayTitle: MiniMax
+description: "Все модели MiniMax, доступные через API: ABAB 6.5S Chat, ABAB 6.5 Chat и Speech-01. Сильный китайский диалог и синтез речи, полная совместимость с OpenAI SDK."
+slug: models/minimax
+published: true
+category: Модели
+order: 11
+---
+
+# Модели MiniMax
+
+Языковые и речевые модели от MiniMax.
+
+## Основные модели
+
+| Модель | Описание |
+|------|------|
+| abab7-preview | Preview-версия MiniMax 7.0, актуальный флагман |
+| abab6.5s-chat | Диалоговая модель MiniMax 6.5S |
+| abab6.5-chat | Диалоговая модель MiniMax 6.5 |
+
+## Речевые модели
+
+| Модель | Описание |
+|------|------|
+| speech-01 | Синтез речи MiniMax |
+| speech-01-turbo | Более быстрый синтез речи |
+
+## Пример
+
+### Генерация текста
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="abab6.5s-chat",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+### Синтез речи
+
+```python
+response = client.audio.speech.create(
+    model="speech-01",
+    voice="female-tianmei",
+    input="Hello, welcome to MiniMax"
+)
+
+with open("output.mp3", "wb") as f:
+    f.write(response.content)
+```
+
+## Особенности
+
+- Сильные диалоговые возможности на китайском языке
+- Поддержка синтеза речи
+- Несколько вариантов голосов
+
+Смотрите [обзор моделей](/models/models), чтобы узнать о других моделях.
