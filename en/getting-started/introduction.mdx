@@ -1,0 +1,146 @@
+---
+title: Introduction to Agicto - Unified AI Model API Platform | OpenAI SDK Compatible
+displayTitle: Introduction
+description: Agicto is a unified AI model access platform with support for 1000+ large language model APIs. It is fully compatible with the OpenAI SDK. Change only the model name to switch across providers with one API key.
+slug: getting-started/introduction
+published: true
+category: Getting Started
+order: 1
+---
+
+# Introduction to Agicto
+
+Agicto is a unified AI model access platform that lets you reach 1000+ large language models worldwide through a single API.
+
+## Why Choose Agicto?
+
+### Fully Compatible with the OpenAI SDK
+
+You do not need to learn a new SDK or API. Just keep using the OpenAI SDK you already know:
+
+```python
+from openai import OpenAI
+
+# Only change these two parameters
+client = OpenAI(
+    api_key="your-api-key",        # Use your Agicto API key
+    base_url="https://api.agicto.cn/v1"  # Use the Agicto base URL
+)
+
+# Everything else stays the same
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+```
+
+### Switch Models by Changing Only the Model Name
+
+With the same code, you can switch to any supported model by changing only the `model` parameter:
+
+```python
+# Use GPT-4o-mini
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+# Switch to Claude
+response = client.chat.completions.create(
+    model="claude-3.5-sonnet",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+# Switch to Qwen
+response = client.chat.completions.create(
+    model="qwen-max",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+# Switch to DeepSeek
+response = client.chat.completions.create(
+    model="deepseek-v3",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+```
+
+### One API for All Models
+
+With Agicto, you can access:
+
+- **Leading global models**: GPT-4o, Claude 3.5, Gemini 2.0, DeepSeek V3
+- **Chinese models**: Qwen, ERNIE, Hunyuan, Doubao
+- **Open-source models**: Llama, Mistral, and more
+
+You do not need multiple platform accounts or multiple API keys.
+
+### Unified Billing
+
+- Pay only for what you use
+- Detailed usage analytics
+- Balance alerts
+
+### Enterprise Features
+
+- Rate limiting
+- Webhook notifications
+- Technical support
+
+## Supported Models
+
+Agicto currently supports 1000+ models, including:
+
+**Popular models**
+- OpenAI: GPT-4o, GPT-4o-mini, GPT-4 Turbo, GPT-3.5-Turbo
+- Anthropic: Claude 3.5 Sonnet, Claude 3 Opus
+- Google: Gemini 2.0 Flash, Gemini 1.5 Pro
+- DeepSeek: DeepSeek V3, DeepSeek Coder
+
+**Open-source models**
+- Meta: Llama 3.1, Llama 3, Llama 2
+- Mistral: Mistral Large, Mistral 7B
+- Other open-source models
+
+**Chinese models**
+- ERNIE, Qwen, Moonshot AI, Zhipu AI, and more
+
+See the [full model list](/models/models).
+
+## Use Cases
+
+**Content generation**
+- Writing, summarization, translation
+
+**Coding assistance**
+- Code generation, completion, analysis
+
+**Data processing**
+- Text analysis, information extraction
+
+**Conversational systems**
+- Customer service bots, AI assistants
+
+## Architecture
+
+```text
+Application
+    ↓
+Agicto API (Unified Interface)
+    ↓
+├─ OpenAI
+├─ Claude
+├─ Gemini
+├─ DeepSeek
+└─ Other models
+```
+
+## Get Started
+
+1. [Create an account](https://agicto.com/login) and get your API key
+2. [Quick Start](/getting-started/quickstart) to send your first request
+3. [Browse models](/models/models) to pick the right model
+4. [Read the compatibility guide](/getting-started/compatibility) for best practices
+
+## Technical Support
+
+Add WeChat: **starkwang_**

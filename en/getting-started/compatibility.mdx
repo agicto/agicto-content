@@ -1,0 +1,87 @@
+---
+title: OpenAI Compatibility
+displayTitle: OpenAI Compatibility
+description: Agicto is fully compatible with the OpenAI SDK.
+slug: getting-started/compatibility
+published: true
+category: Getting Started
+order: 3
+---
+
+# OpenAI Compatibility
+
+Agicto is fully compatible with the OpenAI SDK. You only need to change two parameters to get started.
+
+## How to Use It
+
+### Python
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",        # Use your Agicto API key
+    base_url="https://api.agicto.cn/v1"  # Use the Agicto base URL
+)
+
+# The rest of your code stays the same
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+### Node.js
+
+```javascript
+import OpenAI from 'openai';
+
+const client = new OpenAI({
+  apiKey: 'your-api-key',
+  baseURL: 'https://api.agicto.cn/v1',
+});
+
+const response = await client.chat.completions.create({
+  model: 'gpt-4o-mini',
+  messages: [{ role: 'user', content: 'Hello!' }],
+});
+
+console.log(response.choices[0].message.content);
+```
+
+## Supported Features
+
+- Chat Completions
+- Embeddings
+- Function Calling
+- Vision
+- Image Generation
+- Streaming
+
+## Switching Between Models
+
+Change only the `model` parameter to switch between providers:
+
+```python
+# Use Claude
+response = client.chat.completions.create(
+    model="claude-3.5-sonnet",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+# Use DeepSeek
+response = client.chat.completions.create(
+    model="deepseek-v3",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+# Use Qwen
+response = client.chat.completions.create(
+    model="qwen-max",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+```
+
+See the [model overview](/models/models) to explore all available models.
