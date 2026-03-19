@@ -1,0 +1,160 @@
+---
+title: Function Calling
+displayTitle: Function Calling
+description: "Let models call external tools with function calling."
+slug: features/function-calling
+published: true
+category: Features
+order: 3
+---
+
+# Function Calling
+
+Function calling lets the model invoke external tools and APIs so it can fetch data, perform actions, and combine reasoning with real systems.
+
+## What function calling enables
+
+- Fetch live data from external APIs
+- Run calculations and data processing
+- Interact with databases
+- Call third-party services
+
+## Basic workflow
+
+### 1. Define tools
+
+```python
+from openai import OpenAI
+import json
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "description": "Get weather information for a city",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "city": {
+                        "type": "string",
+                        "description": "City name"
+                    },
+                    "unit": {
+                        "type": "string",
+                        "enum": ["celsius", "fahrenheit"],
+                        "description": "Temperature unit"
+                    }
+                },
+                "required": ["city"]
+            }
+        }
+    }
+]
+```
+
+### 2. Send the request
+
+```python
+messages = [{"role": "user", "content": "What's the weather in Beijing today?"}]
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=messages,
+    tools=tools,
+    tool_choice="auto"
+)
+
+if response.choices[0].message.tool_calls:
+    tool_call = response.choices[0].message.tool_calls[0]
+    function_name = tool_call.function.name
+    function_args = json.loads(tool_call.function.arguments)
+```
+
+### 3. Execute the tool and return the result
+
+```python
+def get_weather(city, unit="celsius"):
+    return {
+        "city": city,
+        "temperature": 22,
+        "condition": "Sunny",
+        "unit": unit
+    }
+
+if function_name == "get_weather":
+    result = get_weather(**function_args)
+
+    messages.append(response.choices[0].message)
+    messages.append({
+        "role": "tool",
+        "tool_call_id": tool_call.id,
+        "content": json.dumps(result, ensure_ascii=False)
+    })
+
+    final_response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=messages
+    )
+
+    print(final_response.choices[0].message.content)
+```
+
+## Multi-tool example
+
+```python
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "description": "Get city weather",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "city": {"type": "string", "description": "City name"}
+                },
+                "required": ["city"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_time",
+            "description": "Get current time",
+            "parameters": {
+                "type": "object",
+                "properties": {}
+            }
+        }
+    }
+]
+```
+
+## Force a specific tool
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Check the weather for me"}],
+    tools=tools,
+    tool_choice={
+        "type": "function",
+        "function": {"name": "get_weather"}
+    }
+)
+```
+
+## Best practices
+
+1. Keep tool schemas simple and explicit.
+2. Validate arguments before executing external code.
+3. Return structured JSON whenever possible.
+4. Limit tool access to the minimum required set.
+5. Log tool calls for debugging and auditing.

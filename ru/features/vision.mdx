@@ -1,0 +1,110 @@
+---
+title: Визуальные модели
+displayTitle: Зрение
+description: "Используйте визуальные модели для анализа и понимания изображений."
+slug: features/vision
+published: true
+category: Возможности
+order: 4
+---
+
+# Визуальные модели
+
+Визуальные модели умеют анализировать изображения для описания, OCR, visual QA, анализа графиков и других мультимодальных задач.
+
+## Базовое использование
+
+### Анализ изображения по URL
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "What is in this image?"},
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": "https://example.com/image.jpg"
+                    }
+                }
+            ]
+        }
+    ]
+)
+```
+
+### Анализ локального изображения
+
+```python
+import base64
+
+def encode_image(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode("utf-8")
+```
+
+## Несколько изображений
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "Compare the differences between these two images"},
+                {"type": "image_url", "image_url": {"url": "https://example.com/image1.jpg"}},
+                {"type": "image_url", "image_url": {"url": "https://example.com/image2.jpg"}}
+            ]
+        }
+    ]
+)
+```
+
+## Уровень детализации
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "Describe this image in detail"},
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": "https://example.com/image.jpg",
+                        "detail": "high"
+                    }
+                }
+            ]
+        }
+    ]
+)
+```
+
+## Частые сценарии
+
+- Описание изображения
+- OCR и извлечение текста
+- Visual question answering
+- Анализ графиков
+- Объяснение скриншотов кода
+
+## Рекомендуемые модели
+
+- `gpt-4o`
+- `gpt-4.1`
+- `gemini-2.0-flash`
+- `qwen-vl-max`

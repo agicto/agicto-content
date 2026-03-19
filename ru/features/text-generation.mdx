@@ -1,0 +1,129 @@
+---
+title: Генерация текста
+displayTitle: Генерация текста
+description: "Используйте Agicto для генерации текста и chat completions."
+slug: features/text-generation
+published: true
+category: Возможности
+order: 1
+---
+
+# Генерация текста
+
+Генерация текста через Chat Completions — самая частая AI-задача: написание текста, диалог, суммаризация и контент.
+
+## Базовое использование
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "system", "content": "Ты профессиональный помощник"},
+        {"role": "user", "content": "Объясни, что такое искусственный интеллект"}
+    ]
+)
+
+print(response.choices[0].message.content)
+```
+
+## Потоковый вывод
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Напиши короткое стихотворение"}],
+    stream=True
+)
+
+for chunk in response:
+    if chunk.choices[0].delta.content:
+        print(chunk.choices[0].delta.content, end="", flush=True)
+```
+
+## System prompt
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "system", "content": "Ты senior Python-разработчик, который специализируется на производительности."},
+        {"role": "user", "content": "Как улучшить производительность Python-кода?"}
+    ]
+)
+```
+
+## Многошаговый диалог
+
+```python
+messages = [
+    {"role": "system", "content": "Ты дружелюбный помощник"}
+]
+
+messages.append({"role": "user", "content": "Меня зовут Алекс"})
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=messages
+)
+messages.append({"role": "assistant", "content": response.choices[0].message.content})
+
+messages.append({"role": "user", "content": "Как меня зовут?"})
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=messages
+)
+
+print(response.choices[0].message.content)
+```
+
+## Основные параметры
+
+### `temperature`
+
+- `0`: детерминированный вывод
+- `1`: баланс креативности и стабильности
+- `2`: максимально креативный вывод
+
+### `max_tokens`
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Объясни, что такое ИИ"}],
+    max_tokens=100
+)
+```
+
+### `top_p`
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Напиши стихотворение"}],
+    top_p=0.9
+)
+```
+
+## Поддерживаемые модели
+
+- **GPT**: `gpt-4o`, `gpt-4o-mini`, `gpt-4-turbo`
+- **Claude**: `claude-3.5-sonnet`, `claude-3-opus`
+- **Gemini**: `gemini-2.0-flash`, `gemini-1.5-pro`
+- **DeepSeek**: `deepseek-v3`, `deepseek-chat`
+- **Китайские модели**: `qwen-max`, `ernie-4.0`, `hunyuan-large`
+
+Полный список смотрите в [обзоре моделей](/models/models).
+
+## Лучшие практики
+
+1. Ясно задавайте роль через system prompt.
+2. Используйте stream для лучшего UX.
+3. Ограничивайте токены для контроля стоимости.
+4. Подбирайте модель под сложность задачи.
+5. Добавляйте retry и обработку ошибок.

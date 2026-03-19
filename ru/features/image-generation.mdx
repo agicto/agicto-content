@@ -1,0 +1,115 @@
+---
+title: Генерация изображений
+displayTitle: Генерация изображений
+description: "Генерируйте изображения с помощью AI-моделей."
+slug: features/image-generation
+published: true
+category: Возможности
+order: 5
+---
+
+# Генерация изображений
+
+Используйте AI-модели для генерации изображений по текстовому описанию.
+
+## Базовое использование
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="A cute orange cat sitting on a windowsill in sunlight, watercolor style",
+    size="1024x1024",
+    quality="standard",
+    n=1
+)
+
+image_url = response.data[0].url
+print(f"Image URL: {image_url}")
+```
+
+## Основные параметры
+
+### `prompt`
+
+Описывайте объект, окружение, стиль и освещение как можно точнее.
+
+### `size`
+
+```python
+sizes = ["1024x1024", "1024x1792", "1792x1024"]
+```
+
+### `quality`
+
+```python
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="A beautiful landscape photo",
+    quality="hd"
+)
+```
+
+### `style`
+
+```python
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="A beach at sunset",
+    style="vivid"
+)
+```
+
+### `n`
+
+```python
+response = client.images.generate(
+    model="dall-e-2",
+    prompt="Abstract art",
+    n=4
+)
+```
+
+## Редактирование изображения
+
+```python
+response = client.images.edit(
+    model="dall-e-2",
+    image=open("original.png", "rb"),
+    mask=open("mask.png", "rb"),
+    prompt="Add a cat in the blank area",
+    size="1024x1024",
+    n=1
+)
+```
+
+## Вариации
+
+```python
+response = client.images.create_variation(
+    model="dall-e-2",
+    image=open("original.png", "rb"),
+    n=3,
+    size="1024x1024"
+)
+```
+
+## Поддерживаемые модели
+
+| Модель | Размеры | Описание |
+|------|------|------|
+| dall-e-3 | 1024x1024, 1024x1792, 1792x1024 | Новейшая модель, лучшее качество |
+| dall-e-2 | 256x256, 512x512, 1024x1024 | Поддерживает редактирование и вариации |
+
+## Советы по prompt
+
+1. Точно описывайте объект.
+2. Указывайте стиль и композицию.
+3. Добавляйте свет и настроение.
+4. Улучшайте prompt итеративно.

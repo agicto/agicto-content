@@ -1,0 +1,163 @@
+---
+title: Text Generation
+displayTitle: Text Generation
+description: "Use Agicto for text generation and chat completions."
+slug: features/text-generation
+published: true
+category: Features
+order: 1
+---
+
+# Text Generation
+
+Text generation with Chat Completions is the most common AI capability for writing, conversation, summarization, and content creation.
+
+## Basic usage
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "system", "content": "You are a professional assistant"},
+        {"role": "user", "content": "Explain artificial intelligence"}
+    ]
+)
+
+print(response.choices[0].message.content)
+```
+
+## Streaming
+
+Streaming lets you display output in real time:
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Write a short poem"}],
+    stream=True
+)
+
+for chunk in response:
+    if chunk.choices[0].delta.content:
+        print(chunk.choices[0].delta.content, end="", flush=True)
+```
+
+## System prompts
+
+Use a system prompt to define the model's behavior:
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "system", "content": "You are a senior Python developer focused on performance."},
+        {"role": "user", "content": "How can I improve Python performance?"}
+    ]
+)
+```
+
+## Multi-turn conversation
+
+Keep message history to maintain context:
+
+```python
+messages = [
+    {"role": "system", "content": "You are a friendly assistant"}
+]
+
+messages.append({"role": "user", "content": "My name is Alex"})
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=messages
+)
+messages.append({"role": "assistant", "content": response.choices[0].message.content})
+
+messages.append({"role": "user", "content": "What is my name?"})
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=messages
+)
+
+print(response.choices[0].message.content)
+```
+
+## Key parameters
+
+### `temperature`
+
+- `0`: deterministic output for factual tasks
+- `1`: balanced creativity and consistency
+- `2`: highly creative and random
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Write a story"}],
+    temperature=1.5
+)
+```
+
+### `max_tokens`
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Explain artificial intelligence"}],
+    max_tokens=100
+)
+```
+
+### `top_p`
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Write a poem"}],
+    top_p=0.9
+)
+```
+
+## Supported models
+
+All Agicto-supported models can be used for text generation:
+
+- **GPT**: `gpt-4o`, `gpt-4o-mini`, `gpt-4-turbo`
+- **Claude**: `claude-3.5-sonnet`, `claude-3-opus`
+- **Gemini**: `gemini-2.0-flash`, `gemini-1.5-pro`
+- **DeepSeek**: `deepseek-v3`, `deepseek-chat`
+- **Chinese models**: `qwen-max`, `ernie-4.0`, `hunyuan-large`
+
+See the [Model Overview](/models/models) for the full list.
+
+## Best practices
+
+1. Use system prompts to define the role clearly.
+2. Stream output for better user experience.
+3. Limit token usage to control cost.
+4. Choose models based on task complexity.
+5. Add retries and error handling.
+
+```python
+from openai import OpenAI, OpenAIError
+import time
+
+def generate_with_retry(messages, max_retries=3):
+    for i in range(max_retries):
+        try:
+            response = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=messages
+            )
+            return response.choices[0].message.content
+        except OpenAIError:
+            if i == max_retries - 1:
+                raise
+            time.sleep(2 ** i)
+```

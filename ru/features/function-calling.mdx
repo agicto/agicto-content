@@ -1,0 +1,101 @@
+---
+title: Вызов функций
+displayTitle: Вызов функций
+description: "Позвольте модели вызывать внешние инструменты через function calling."
+slug: features/function-calling
+published: true
+category: Возможности
+order: 3
+---
+
+# Вызов функций
+
+Function calling позволяет модели вызывать внешние инструменты и API, получать данные и выполнять действия поверх reasoning.
+
+## Что это дает
+
+- Получение данных из внешних API
+- Вычисления и обработка данных
+- Взаимодействие с базой данных
+- Вызов сторонних сервисов
+
+## Базовый процесс
+
+### 1. Определите инструменты
+
+```python
+from openai import OpenAI
+import json
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_weather",
+            "description": "Get weather information for a city",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "city": {
+                        "type": "string",
+                        "description": "City name"
+                    }
+                },
+                "required": ["city"]
+            }
+        }
+    }
+]
+```
+
+### 2. Отправьте запрос
+
+```python
+messages = [{"role": "user", "content": "What's the weather in Beijing today?"}]
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=messages,
+    tools=tools,
+    tool_choice="auto"
+)
+```
+
+### 3. Выполните функцию и верните результат
+
+```python
+def get_weather(city, unit="celsius"):
+    return {
+        "city": city,
+        "temperature": 22,
+        "condition": "Sunny",
+        "unit": unit
+    }
+```
+
+## Принудительный вызов конкретной функции
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Check the weather for me"}],
+    tools=tools,
+    tool_choice={
+        "type": "function",
+        "function": {"name": "get_weather"}
+    }
+)
+```
+
+## Лучшие практики
+
+1. Делайте схему функций простой и явной.
+2. Валидируйте аргументы перед выполнением.
+3. Возвращайте структурированный JSON.
+4. Давайте модели только минимально нужный набор tools.
+5. Логируйте tool calls для отладки.

@@ -1,0 +1,129 @@
+---
+title: Image Generation
+displayTitle: Image Generation
+description: "Generate images with AI models."
+slug: features/image-generation
+published: true
+category: Features
+order: 5
+---
+
+# Image Generation
+
+Use AI models to generate images from text prompts.
+
+## Basic usage
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="A cute orange cat sitting on a windowsill in sunlight, watercolor style",
+    size="1024x1024",
+    quality="standard",
+    n=1
+)
+
+image_url = response.data[0].url
+print(f"Image URL: {image_url}")
+```
+
+## Important parameters
+
+### `prompt`
+
+Describe the subject, environment, style, and lighting as clearly as possible.
+
+### `size`
+
+```python
+sizes = ["1024x1024", "1024x1792", "1792x1024"]
+```
+
+### `quality`
+
+```python
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="A beautiful landscape photo",
+    quality="hd"
+)
+```
+
+### `style`
+
+```python
+response = client.images.generate(
+    model="dall-e-3",
+    prompt="A beach at sunset",
+    style="vivid"
+)
+```
+
+### `n`
+
+```python
+response = client.images.generate(
+    model="dall-e-2",
+    prompt="Abstract art",
+    n=4
+)
+```
+
+## Download an image
+
+```python
+import requests
+from PIL import Image
+from io import BytesIO
+
+def download_image(url, save_path):
+    response = requests.get(url)
+    img = Image.open(BytesIO(response.content))
+    img.save(save_path)
+    return img
+```
+
+## Image editing
+
+```python
+response = client.images.edit(
+    model="dall-e-2",
+    image=open("original.png", "rb"),
+    mask=open("mask.png", "rb"),
+    prompt="Add a cat in the blank area",
+    size="1024x1024",
+    n=1
+)
+```
+
+## Variations
+
+```python
+response = client.images.create_variation(
+    model="dall-e-2",
+    image=open("original.png", "rb"),
+    n=3,
+    size="1024x1024"
+)
+```
+
+## Supported models
+
+| Model | Sizes | Notes |
+|------|------|------|
+| dall-e-3 | 1024x1024, 1024x1792, 1792x1024 | Latest model, highest quality |
+| dall-e-2 | 256x256, 512x512, 1024x1024 | Supports edits and variations |
+
+## Prompt tips
+
+1. Be specific about the subject.
+2. Include style and composition.
+3. Mention lighting and mood.
+4. Iterate on prompts instead of expecting a perfect first result.
