@@ -1,0 +1,64 @@
+---
+title: Интеграция с Dify
+displayTitle: Интеграция с Dify
+description: "Используйте Agicto в Dify."
+slug: resources/dify
+published: true
+category: Ресурсы
+order: 3
+---
+
+# Интеграция с Dify
+
+Dify — это open-source платформа для быстрой сборки AI-приложений на базе LLM.
+
+## Настройка Agicto
+
+### 1. Откройте настройки моделей
+
+После входа в Dify перейдите в **Settings → Model Provider**.
+
+### 2. Добавьте кастомную модель
+
+Выберите **OpenAI** и задайте:
+
+- **API Key**: ваш Agicto API key
+- **API Base URL**: `https://api.agicto.cn/v1`
+- **Model Name**: нужная модель, например `gpt-4o-mini`
+
+### 3. Проверьте соединение
+
+Нажмите **Test** и убедитесь, что соединение успешно.
+
+## Частые сценарии
+
+### Чат-ассистент
+
+1. Создайте новое приложение и выберите chat assistant
+2. Выберите настроенную модель Agicto
+3. Задайте system prompt
+4. Опубликуйте приложение
+
+### Workflow
+
+1. Создайте workflow app
+2. Добавьте LLM node
+3. Выберите модель Agicto
+4. Настройте input и output
+5. Протестируйте и опубликуйте
+
+### Knowledge base
+
+1. Создайте knowledge base
+2. Загрузите документы
+3. Выберите embedding-модель Agicto
+4. Подключите knowledge base к приложению
+
+## Практические рекомендации
+
+- **Сложное reasoning**: `gpt-4o`, `claude-3.5-sonnet`
+- **Быстрый ответ**: `gpt-4o-mini`, `deepseek-v3`
+- **Китайские задачи**: `qwen-max`, `ernie-4.0`, `hunyuan-large`
+- **Цена/качество**: `gpt-4o-mini`, `deepseek-v3`
+
+Полный список моделей есть в [обзоре моделей](/models/models).

@@ -1,0 +1,81 @@
+---
+title: SDK
+displayTitle: SDK
+description: "Используйте официальные SDK и совместимые библиотеки с Agicto."
+slug: resources/sdks
+published: true
+category: Ресурсы
+order: 1
+---
+
+# SDK
+
+Рекомендуемый способ работы с Agicto — использовать OpenAI-совместимые SDK, которые вам уже знакомы.
+
+## Официальные SDK
+
+Agicto совместим с популярными библиотеками экосистемы OpenAI:
+
+- JavaScript / TypeScript
+- Python
+- Go
+- PHP
+- Ruby
+
+## Базовый пример на Python
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+
+print(response.choices[0].message.content)
+```
+
+## Базовый пример на JavaScript
+
+```javascript
+import OpenAI from 'openai';
+
+const client = new OpenAI({
+  apiKey: 'your-api-key',
+  baseURL: 'https://api.agicto.cn/v1'
+});
+
+const response = await client.chat.completions.create({
+  model: 'gpt-4o-mini',
+  messages: [{role: 'user', content: 'Hello!'}]
+});
+
+console.log(response.choices[0].message.content);
+```
+
+## Другие семейства моделей
+
+Через тот же OpenAI-совместимый интерфейс Agicto может маршрутизировать запросы к:
+
+- Claude
+- Gemini
+- Mistral
+- DeepSeek
+- Qwen
+- ERNIE
+- Hunyuan
+
+## Рекомендация
+
+Начните со стандартного OpenAI SDK и меняйте только:
+
+- `api_key`
+- `base_url`
+- `model`
+
+Полная настройка есть в [Быстром старте](/getting-started/quickstart).

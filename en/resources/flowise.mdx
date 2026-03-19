@@ -1,0 +1,65 @@
+---
+title: Flowise Integration
+displayTitle: Flowise Integration
+description: "Use Agicto in Flowise."
+slug: resources/flowise
+published: true
+category: Resources
+order: 4
+---
+
+# Flowise Integration
+
+Flowise is a visual LangChain builder that lets you create LLM workflows with drag-and-drop components.
+
+## Configure Agicto
+
+### 1. Add a `ChatOpenAI` node
+
+On the Flowise canvas, add a **ChatOpenAI** node.
+
+### 2. Configure the node
+
+- **Model Name**: for example `gpt-4o-mini`
+- **OpenAI API Key**: your Agicto API key
+- **Base URL**: `https://api.agicto.cn/v1`
+
+### 3. Connect the workflow
+
+Connect the `ChatOpenAI` node to the rest of your graph.
+
+## Example scenarios
+
+### Simple chatbot
+
+1. Add a `ChatOpenAI` node
+2. Add a `Conversation Chain` node
+3. Connect them
+4. Test the conversation
+
+### RAG application
+
+1. Add `Document Loaders`
+2. Add `Text Splitter`
+3. Add `OpenAI Embeddings` configured for Agicto
+4. Add `Vector Store`
+5. Add `Retrieval QA Chain`
+6. Add `ChatOpenAI`
+7. Connect all nodes
+
+### Agent application
+
+1. Add `ChatOpenAI`
+2. Add `Tools`
+3. Add `Agent`
+4. Connect and configure them
+
+## Supported features
+
+- Chat interfaces
+- Document Q&A
+- Agent tool calling
+- Vector retrieval
+- Memory management
+
+See [LangChain Integration](/resources/langchain) for more details.

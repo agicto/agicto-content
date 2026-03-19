@@ -1,0 +1,65 @@
+---
+title: Интеграция с Flowise
+displayTitle: Интеграция с Flowise
+description: "Используйте Agicto в Flowise."
+slug: resources/flowise
+published: true
+category: Ресурсы
+order: 4
+---
+
+# Интеграция с Flowise
+
+Flowise — это визуальный конструктор LangChain, в котором LLM-пайплайны собираются перетаскиванием блоков.
+
+## Настройка Agicto
+
+### 1. Добавьте узел `ChatOpenAI`
+
+На canvas Flowise добавьте узел **ChatOpenAI**.
+
+### 2. Настройте параметры
+
+- **Model Name**: например `gpt-4o-mini`
+- **OpenAI API Key**: ваш Agicto API key
+- **Base URL**: `https://api.agicto.cn/v1`
+
+### 3. Соедините workflow
+
+Подключите `ChatOpenAI` к остальным узлам графа.
+
+## Примеры сценариев
+
+### Простой чат-бот
+
+1. Добавьте `ChatOpenAI`
+2. Добавьте `Conversation Chain`
+3. Соедините их
+4. Протестируйте диалог
+
+### RAG-приложение
+
+1. Добавьте `Document Loaders`
+2. Добавьте `Text Splitter`
+3. Добавьте `OpenAI Embeddings` с настройкой Agicto
+4. Добавьте `Vector Store`
+5. Добавьте `Retrieval QA Chain`
+6. Добавьте `ChatOpenAI`
+7. Соедините все узлы
+
+### Agent-приложение
+
+1. Добавьте `ChatOpenAI`
+2. Добавьте `Tools`
+3. Добавьте `Agent`
+4. Соедините и настройте их
+
+## Поддерживаемые функции
+
+- Чат-интерфейсы
+- Q&A по документам
+- Agent tool calling
+- Vector retrieval
+- Управление памятью
+
+Подробнее см. в [интеграции с LangChain](/resources/langchain).

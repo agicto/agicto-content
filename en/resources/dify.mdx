@@ -1,0 +1,64 @@
+---
+title: Dify Integration
+displayTitle: Dify Integration
+description: "Use Agicto in Dify."
+slug: resources/dify
+published: true
+category: Resources
+order: 3
+---
+
+# Dify Integration
+
+Dify is an open-source LLM application platform for quickly building AI products.
+
+## Configure Agicto
+
+### 1. Open model settings
+
+After signing in to Dify, go to **Settings → Model Provider**.
+
+### 2. Add a custom model
+
+Choose **OpenAI** and configure:
+
+- **API Key**: your Agicto API key
+- **API Base URL**: `https://api.agicto.cn/v1`
+- **Model Name**: the model you want to use, such as `gpt-4o-mini`
+
+### 3. Test the connection
+
+Click **Test** and confirm the connection succeeds.
+
+## Common use cases
+
+### Chat assistant
+
+1. Create a new application and choose chat assistant
+2. Select the configured Agicto model
+3. Set the system prompt
+4. Publish the application
+
+### Workflow
+
+1. Create a workflow app
+2. Add an LLM node
+3. Select an Agicto model
+4. Configure input and output
+5. Test and publish
+
+### Knowledge base
+
+1. Create a knowledge base
+2. Upload documents
+3. Choose an Agicto embedding model
+4. Attach the knowledge base to your app
+
+## Best practices
+
+- **Complex reasoning**: `gpt-4o`, `claude-3.5-sonnet`
+- **Fast response**: `gpt-4o-mini`, `deepseek-v3`
+- **Chinese tasks**: `qwen-max`, `ernie-4.0`, `hunyuan-large`
+- **Cost efficiency**: `gpt-4o-mini`, `deepseek-v3`
+
+See [Model Overview](/models/models) for the full model list.

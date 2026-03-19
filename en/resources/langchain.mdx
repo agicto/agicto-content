@@ -1,0 +1,89 @@
+---
+title: LangChain Integration
+displayTitle: LangChain Integration
+description: "Use Agicto with LangChain."
+slug: resources/langchain
+published: true
+category: Resources
+order: 2
+---
+
+# LangChain Integration
+
+LangChain is a popular framework for building LLM applications, and Agicto works with it through the OpenAI-compatible API.
+
+## Installation
+
+```bash
+pip install langchain langchain-openai
+```
+
+## Basic usage
+
+```python
+from langchain_openai import ChatOpenAI
+
+llm = ChatOpenAI(
+    model="gpt-4o-mini",
+    openai_api_key="your-api-key",
+    openai_api_base="https://api.agicto.cn/v1"
+)
+
+response = llm.invoke("Hello")
+print(response.content)
+```
+
+## Build a RAG application
+
+```python
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_openai import OpenAIEmbeddings
+from langchain.vectorstores import FAISS
+from langchain.chains import RetrievalQA
+
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=200
+)
+texts = text_splitter.create_documents(["Document content"])
+
+embeddings = OpenAIEmbeddings(
+    openai_api_key="your-api-key",
+    openai_api_base="https://api.agicto.cn/v1"
+)
+vectorstore = FAISS.from_documents(texts, embeddings)
+
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    retriever=vectorstore.as_retriever()
+)
+
+result = qa_chain("Ask a question")
+print(result["result"])
+```
+
+## Use an agent
+
+```python
+from langchain.agents import initialize_agent, AgentType
+from langchain.tools import Tool
+
+tools = [
+    Tool(
+        name="Search",
+        func=lambda x: f"Search: {x}",
+        description="Search tool"
+    )
+]
+
+agent = initialize_agent(
+    tools,
+    llm,
+    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION
+)
+
+result = agent.run("Search for Python")
+print(result)
+```
+
+See [Quick Start](/getting-started/quickstart) for the base setup.
