@@ -1,0 +1,120 @@
+---
+title: Quick Start - Connect to the Agicto API in 5 Minutes | OpenAI SDK Compatible
+displayTitle: Quick Start
+description: Connect to the Agicto API in 5 minutes with full OpenAI SDK compatibility. Supports Python, Node.js, and cURL. Just change the Base URL to access 1000+ large language models.
+slug: getting-started/quickstart
+published: true
+category: Getting Started
+order: 2
+---
+
+# Quick Start
+
+Agicto is fully compatible with the OpenAI SDK. You only need to replace the **base URL** and **API key**. No other code changes are required.
+
+## Prerequisites
+
+Before you begin, make sure that:
+
+1. You have registered for an Agicto account and obtained an API key
+2. Your account has sufficient balance
+3. You understand the [pricing rules](https://agicto.com/pricing)
+
+## Base URL
+
+Use the following Base URL for all API requests:
+
+```bash
+https://api.agicto.cn/v1
+```
+
+## Install the SDK
+
+<div class="code-tabs">
+  <div class="code-tab-buttons">
+    <button class="code-tab-button active" data-tab="npm">npm</button>
+    <button class="code-tab-button" data-tab="pip">pip</button>
+  </div>
+  <div class="code-tab-content active" data-tab="npm">
+
+```bash
+npm install openai
+```
+
+  </div>
+  <div class="code-tab-content" data-tab="pip">
+
+```bash
+pip install openai
+```
+
+  </div>
+</div>
+
+## Code Examples
+
+### Python
+
+```python index.py
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="your-api-key",
+    base_url="https://api.agicto.cn/v1"
+)
+
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[
+        {"role": "user", "content": "Tell me a joke"}
+    ]
+)
+
+print(response.choices[0].message.content)
+```
+
+### Node.js
+
+```javascript index.js
+import OpenAI from 'openai';
+
+const client = new OpenAI({
+  apiKey: 'your-api-key',
+  baseURL: 'https://api.agicto.cn/v1',
+});
+
+const response = await client.chat.completions.create({
+  model: 'gpt-4o-mini',
+  messages: [
+    { role: 'user', content: 'Hello!' }
+  ],
+});
+
+console.log(response.choices[0].message.content);
+```
+
+### cURL
+
+```bash
+curl https://api.agicto.cn/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -d '{
+    "model": "gpt-4o-mini",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hello!"
+      }
+    ]
+  }'
+```
+
+## Next Steps
+
+- [Browse all supported models](/models/models)
+- [Learn about compatibility](/getting-started/compatibility)
+
+## Need Help?
+
+If you have any questions, add WeChat: **starkwang_** for technical support.
